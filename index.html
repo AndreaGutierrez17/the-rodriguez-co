@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Rodriguez Co | Houston Renovation & Repairs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#home" aria-label="The Rodriguez Co home">
+        <img src="img/logo-the-rodriguez-co.png" alt="The Rodriguez Co" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="about.html">About Us</a>
+
+        <div class="nav-item has-mega">
+          <a class="nav-link" href="#services">Services</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-label="Open services menu">
+            <span class="chevron" aria-hidden="true"></span>
+          </button>
+
+          <div class="mega-menu" aria-label="Services menu">
+            <a href="roofing.html">
+              <span>Roofing</span>
+              <small>Repairs, replacements, and storm support.</small>
+            </a>
+            <a href="kitchen-bath.html">
+              <span>Kitchen & Bath</span>
+              <small>Functional remodels with clean finishes.</small>
+            </a>
+            <a href="handyman.html">
+              <span>Handyman</span>
+              <small>Reliable repairs for homes and businesses.</small>
+            </a>
+            <a href="exterior-work.html">
+              <span>Exterior Work</span>
+              <small>Siding, fencing, concrete, decks, and patios.</small>
+            </a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="gallery.html">Gallery</a>
+        <a class="nav-link" href="#faq">FQA</a>
+        <a class="nav-link nav-cta" href="book-online.html">Book Online</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section-target" id="home" aria-label="The Rodriguez Co hero">
+        <div class="hero-backdrop" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Houston & Pearland Renovation Experts</p>
+          <h1>Built Right. Repaired Right.</h1>
+          <span class="hero-title-line" aria-hidden="true"></span>
+          <p class="hero-copy">
+            Roofing to full remodels — done right the first time.
+          </p>
+        </div>
+
+        <div class="hero-media" aria-label="Completed remodeling work by The Rodriguez Co">
+          <img src="img/hero-2.jpeg" alt="Finished kitchen remodel with white cabinets and stone countertop" />
+        </div>
+
+        <div class="trust-seal" aria-label="Trusted local renovation experts">
+          <svg class="seal-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <path
+                id="seal-circle"
+                d="M 100,100 m -74,0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0"
+              />
+            </defs>
+            <text>
+              <textPath href="#seal-circle" startOffset="0">
+                Trusted Local Builders * Roofing & Remodeling *
+              </textPath>
+            </text>
+          </svg>
+          <div class="seal-center">
+            <span class="seal-roof" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-preview section-target" id="about">
+        <div class="about-collage" aria-label="The Rodriguez Co completed project examples">
+          <div class="about-stat">
+            <strong>15+</strong>
+            <span>Years Active</span>
+          </div>
+          <img
+            class="about-image about-image-main"
+            src="img/Cocina 1.jpeg"
+            alt="Kitchen remodeling work completed by The Rodriguez Co"
+          />
+          <img
+            class="about-image about-image-wide"
+            src="img/Gate entry.png"
+            alt="Stone entry columns completed by The Rodriguez Co"
+          />
+        </div>
+
+        <div class="about-copy">
+          <p class="eyebrow dark">Building Excellence</p>
+          <h2>About The Rodriguez Co</h2>
+          <p>
+            The Rodriguez Co helps Houston and Pearland property owners handle
+            roofing, repairs, remodeling, and exterior improvements with
+            dependable workmanship and clear communication from start to finish.
+          </p>
+          <a class="about-button" href="about.html">Read More About Us</a>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="The Rodriguez Co service highlights">
+        <div class="trust-strip-bg" aria-hidden="true"></div>
+        <div class="trust-item">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M7 33 32 13l25 20" />
+            <path d="M14 31v22h36V31" />
+            <path d="M25 53V38h14v15" />
+          </svg>
+          <div>
+            <strong>Roofing & Remodels</strong>
+            <span>From repairs to complete transformations.</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="m39 10 15 15-9 9-6-6-18 18-6-6 18-18-6-6 12-6Z" />
+            <path d="m18 43-8 8 3 3 8-8" />
+          </svg>
+          <div>
+            <strong>Home Repairs</strong>
+            <span>Reliable handyman work for everyday needs.</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M18 8h28v48H18z" />
+            <path d="M25 20h14" />
+            <path d="M25 31h14" />
+            <path d="M25 42h8" />
+            <path d="m40 43 4 4 8-10" />
+          </svg>
+          <div>
+            <strong>Free Estimates</strong>
+            <span>Clear scope and pricing before work begins.</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 56s18-17 18-32a18 18 0 0 0-36 0c0 15 18 32 18 32Z" />
+            <circle cx="32" cy="24" r="7" />
+          </svg>
+          <div>
+            <strong>Local Service Area</strong>
+            <span>Serving Houston, Pearland, and nearby communities.</span>
+          </div>
+        </div>
+      </section>
+      <section class="services-preview section-target" id="services">
+        <div class="services-heading">
+          <p class="eyebrow dark">Our Services</p>
+          <h2>Professional Care for Every Task</h2>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <img src="img/hero.avif" alt="Residential roofing and exterior project" />
+            <div>
+              <h3>Roofing</h3>
+              <p>Roof repairs, replacements, storm support, and long-lasting exterior protection.</p>
+              <a href="#roofing">View Service Details</a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/WhatsApp Image 2026-07-30 at 14.21.46.jpeg" alt="Home improvement and repair project" />
+            <div>
+              <h3>Handyman</h3>
+              <p>Reliable repair, maintenance, and improvement work for homes and businesses.</p>
+              <a href="#handyman">View Service Details</a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/hero-2.jpeg" alt="Completed kitchen remodel" />
+            <div>
+              <h3>Kitchen Remodeling</h3>
+              <p>Functional kitchen upgrades with cabinets, countertops, backsplashes, and clean finishes.</p>
+              <a href="#remodeling">View Service Details</a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/BANO 4.1.png" alt="Bathroom remodeling work" />
+            <div>
+              <h3>Bathroom Remodeling</h3>
+              <p>Bathroom renovations with custom showers, vanities, tile, fixtures, and lasting quality.</p>
+              <a href="#bathroom">View Service Details</a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/WhatsApp Image 2026-07-30 at 14.22.43.jpeg" alt="Flooring installation project" />
+            <div>
+              <h3>Flooring</h3>
+              <p>Installation and updates for LVP, engineered flooring, tile layouts, and transitions.</p>
+              <a href="#flooring">View Service Details</a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/Cocina 2.png" alt="Interior painting and finishing project" />
+            <div>
+              <h3>Painting</h3>
+              <p>Interior and exterior painting with crisp lines, smooth surfaces, and durable finishes.</p>
+              <a href="#painting">View Service Details</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="more-services" aria-label="Additional The Rodriguez Co services">
+          <span>Plumbing</span>
+          <span>Electrical</span>
+          <span>Carpentry</span>
+          <span>Doors & Windows</span>
+          <span>Fence Repair</span>
+          <span>Deck & Patio</span>
+          <span>Concrete</span>
+          <span>Siding</span>
+          <span>Insurance Claims</span>
+        </div>
+      </section>
+
+      <section class="quote-strip" aria-label="Request a free estimate">
+        <div class="quote-strip-bg" aria-hidden="true"></div>
+        <div class="quote-heading">
+          <p class="eyebrow dark">Free Estimate Available</p>
+          <h2>Get A Quote Now</h2>
+        </div>
+
+        <form class="quote-form" action="#" method="post">
+          <label>
+            <span>First name</span>
+            <input type="text" name="first-name" placeholder="First name" />
+          </label>
+          <label>
+            <span>Last name</span>
+            <input type="text" name="last-name" placeholder="Last name" />
+          </label>
+          <label>
+            <span>Phone</span>
+            <input type="tel" name="phone" placeholder="Phone" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="Email" />
+          </label>
+          <label>
+            <span>Project address</span>
+            <input type="text" name="address" placeholder="Project address" />
+          </label>
+          <label>
+            <span>Service type</span>
+            <select name="service-type">
+              <option value="">Service type</option>
+              <option>Roofing</option>
+              <option>Handyman</option>
+              <option>Kitchen Remodeling</option>
+              <option>Bathroom Remodeling</option>
+              <option>Flooring</option>
+              <option>Painting</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>Concrete</option>
+              <option>Siding</option>
+              <option>Insurance Claim</option>
+            </select>
+          </label>
+          <label>
+            <span>Preferred date</span>
+            <input type="date" name="date" />
+          </label>
+          <label>
+            <span>Preferred time</span>
+            <input type="time" name="time" />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+
+      <section class="stories-strip" aria-label="Customer stories">
+        <div class="stories-heading">
+          <p class="eyebrow">Real Stories, Real Satisfaction</p>
+          <h2>What Our Customers Are Saying</h2>
+        </div>
+
+        <div class="stories-carousel" data-carousel>
+          <button class="carousel-control prev" type="button" aria-label="Previous testimonials" data-carousel-prev>
+            ‹
+          </button>
+
+          <div class="stories-track" data-carousel-track>
+            <article class="story-card">
+              <span class="quote-icon" aria-hidden="true">”</span>
+              <h3>Maria G.</h3>
+              <div class="stars" aria-label="5 star review">★★★★★</div>
+              <p>
+                The Rodriguez Co repaired our roof after a storm and explained
+                every step clearly. The work was fast, clean, and professional.
+              </p>
+              <img class="story-avatar" src="img/avatar-maria.svg" alt="Maria G." />
+            </article>
+            <article class="story-card">
+              <span class="quote-icon" aria-hidden="true">”</span>
+              <h3>James R.</h3>
+              <div class="stars" aria-label="5 star review">★★★★★</div>
+              <p>
+                Our kitchen remodel came out better than expected. The team
+                helped with details, kept the space organized, and finished strong.
+              </p>
+              <img class="story-avatar" src="img/avatar-james.svg" alt="James R." />
+            </article>
+            <article class="story-card">
+              <span class="quote-icon" aria-hidden="true">”</span>
+              <h3>Denise L.</h3>
+              <div class="stars" aria-label="5 star review">★★★★★</div>
+              <p>
+                We called for several repairs around the house. They showed up on
+                time, handled everything, and the pricing was straightforward.
+              </p>
+              <img class="story-avatar" src="img/avatar-denise.svg" alt="Denise L." />
+            </article>
+            <article class="story-card">
+              <span class="quote-icon" aria-hidden="true">”</span>
+              <h3>Oscar M.</h3>
+              <div class="stars" aria-label="5 star review">★★★★★</div>
+              <p>
+                The bathroom renovation was handled with care from demolition to
+                final walkthrough. The tile work and fixtures look excellent.
+              </p>
+              <img class="story-avatar" src="img/avatar-oscar.svg" alt="Oscar M." />
+            </article>
+            <article class="story-card">
+              <span class="quote-icon" aria-hidden="true">”</span>
+              <h3>Kim S.</h3>
+              <div class="stars" aria-label="5 star review">★★★★★</div>
+              <p>
+                They replaced flooring in our main living area and made the whole
+                process simple. The finish feels durable and looks sharp.
+              </p>
+              <img class="story-avatar" src="img/avatar-kim.svg" alt="Kim S." />
+            </article>
+            <article class="story-card">
+              <span class="quote-icon" aria-hidden="true">”</span>
+              <h3>Robert T.</h3>
+              <div class="stars" aria-label="5 star review">★★★★★</div>
+              <p>
+                We needed exterior repairs before selling our property. The crew
+                handled siding, paint touchups, and cleanup without issues.
+              </p>
+              <img class="story-avatar" src="img/avatar-robert.svg" alt="Robert T." />
+            </article>
+          </div>
+
+          <button class="carousel-control next" type="button" aria-label="Next testimonials" data-carousel-next>
+            ›
+          </button>
+        </div>
+      </section>
+      <section class="faq-section section-target" id="faq">
+        <div class="faq-heading">
+          <p class="eyebrow dark">FAQ</p>
+          <h2>Questions Before We Start</h2>
+          <p>
+            Clear answers for roofing, remodeling, repairs, estimates, and
+            project planning with The Rodriguez Co.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item open">
+            <button class="faq-question" type="button" aria-expanded="true">
+              Do you provide free estimates?
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. We review the scope, service type, and project location so
+                we can give you a clear estimate before work begins.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              What types of projects do you handle?
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We handle roofing, handyman repairs, kitchen and bathroom
+                remodeling, flooring, painting, exterior work, siding, concrete,
+                plumbing, electrical, and more.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Can you help with insurance claims?
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. For storm or roof-related damage, we can help document the
+                work needed and support the repair process.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Do you work on residential and commercial properties?
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. The Rodriguez Co works with homeowners and business owners
+                on repairs, remodels, roofing, and property improvements.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              What areas do you serve?
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We serve Houston, Pearland, and surrounding communities. Share
+                your address in the estimate request and we will confirm
+                availability.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="footer-logo" href="index.html" aria-label="The Rodriguez Co home">
+          <img src="img/logo-the-rodriguez-co.png" alt="The Rodriguez Co" />
+        </a>
+
+        <div class="footer-contact">
+          <p class="footer-label">Contact</p>
+          <p class="footer-row"><i class="bi bi-person footer-icon" aria-hidden="true"></i>George Rodriguez</p>
+          <a class="footer-row" href="tel:+18327745582"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>832 774 5582</a>
+          <p class="footer-row"><i class="bi bi-geo-alt footer-icon" aria-hidden="true"></i>Serving Pearland, Houston and Surrounding Area</p>
+        </div>
+
+        <div class="footer-contact">
+          <p class="footer-label">Emergency Support Line</p>
+          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
+          <a class="footer-row" href="mailto:admin@therodriguezco.com"><i class="bi bi-envelope footer-icon" aria-hidden="true"></i>admin@therodriguezco.com</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-socials" aria-label="Social media links">
+          <a class="social-icon instagram-social" href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+          <a class="social-icon facebook-social" href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+          <a class="social-icon linkedin-social" href="#" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+          <a class="social-icon tiktok-social" href="#" aria-label="TikTok"><i class="bi bi-tiktok" aria-hidden="true"></i></a>
+        </div>
+        <p>© 2026 The Rodriguez Co. All rights reserved.</p>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
