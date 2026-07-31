@@ -16,9 +16,41 @@ function setHeaderState() {
 
 function setActiveLink(id) {
   navLinks.forEach((link) => {
-    const linkTarget = link.getAttribute("href")?.replace("#", "");
+    const href = link.getAttribute("href") || "";
+    const url = new URL(href, window.location.href);
+    const linkTarget = url.hash ? url.hash.slice(1) : url.pathname.split("/").pop()?.replace(".html", "") || "home";
     link.classList.toggle("active", linkTarget === id);
   });
+}
+
+function getCurrentNavTarget() {
+  const page = window.location.pathname.split("/").pop() || "index.html";
+
+  if (window.location.hash) {
+    return window.location.hash.slice(1);
+  }
+
+  if (page === "index.html") {
+    return "home";
+  }
+
+  if (page === "gallery.html") {
+    return "gallery";
+  }
+
+  if (page === "about.html") {
+    return "about";
+  }
+
+  if (["roofing.html", "kitchen-bath.html", "handyman.html", "exterior-work.html"].includes(page)) {
+    return "services";
+  }
+
+  if (page === "book-online.html") {
+    return "book-online";
+  }
+
+  return "";
 }
 
 const observer = new IntersectionObserver(
@@ -105,6 +137,7 @@ document.addEventListener("click", (event) => {
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
 setHeaderState();
+setActiveLink(getCurrentNavTarget());
 
 if (carousel) {
   const track = carousel.querySelector("[data-carousel-track]");
