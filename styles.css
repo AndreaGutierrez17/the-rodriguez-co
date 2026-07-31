@@ -2223,10 +2223,12 @@ img {
 
 .gallery-section {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 650px));
+  justify-content: center;
   gap: 24px;
-  max-width: 1360px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 92px clamp(24px, 5vw, 96px) 108px;
   background: #f7f5ee;
 }
@@ -3121,8 +3123,8 @@ img {
   }
 
   .gallery-section {
-    grid-template-columns: 1fr;
-    max-width: 720px;
+    grid-template-columns: minmax(0, 680px);
+    max-width: none;
     padding: 64px 22px 76px;
   }
 
