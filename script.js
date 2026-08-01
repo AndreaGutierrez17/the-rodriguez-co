@@ -2,7 +2,11 @@ const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = [...document.querySelectorAll(".section-target")];
-const animatedSections = [...document.querySelectorAll(".about-preview, .trust-strip")];
+const animatedSections = [
+  ...document.querySelectorAll(
+    ".about-preview, .trust-strip, .services-preview, .quote-strip, .stories-strip, .faq-section, .site-footer, .service-page-hero, .service-detail, .gallery-hero, .gallery-section, .booking-hero, .booking-flow, .about-page-hero, .about-story, .policy-hero, .policy-content, .emergency-hero, .emergency-strip"
+  ),
+];
 const carousel = document.querySelector("[data-carousel]");
 const faqItems = [...document.querySelectorAll(".faq-item")];
 const mobileNavQuery = window.matchMedia("(max-width: 820px)");

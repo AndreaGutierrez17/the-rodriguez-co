@@ -422,33 +422,14 @@ img {
   place-items: center;
   border-radius: 50%;
   background: rgba(29, 58, 99, 0.08);
+  overflow: hidden;
 }
 
-.seal-roof {
-  position: relative;
-  width: 58px;
-  height: 38px;
-}
-
-.seal-roof::before,
-.seal-roof::after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  width: 36px;
-  height: 8px;
-  background: var(--black);
-}
-
-.seal-roof::before {
-  left: 0;
-  transform: rotate(-33deg);
-}
-
-.seal-roof::after {
-  right: 0;
-  background: var(--navy);
-  transform: rotate(33deg);
+.seal-center img {
+  width: 72%;
+  height: 72%;
+  display: block;
+  object-fit: contain;
 }
 
 .placeholder {
@@ -698,6 +679,7 @@ img {
 }
 
 .services-preview {
+  overflow: hidden;
   padding: 118px clamp(24px, 5vw, 96px) 120px;
   background: var(--white);
   scroll-margin-top: var(--header-height);
@@ -707,6 +689,9 @@ img {
   max-width: 980px;
   margin: 0 auto 52px;
   text-align: center;
+  opacity: 0;
+  transform: translateY(-48px);
+  transition: opacity 700ms ease, transform 700ms ease;
 }
 
 .services-heading h2 {
@@ -728,13 +713,68 @@ img {
   border: 1px solid rgba(139, 146, 153, 0.22);
   border-radius: 8px;
   background: #fbfaf5;
+  opacity: 0;
+  transform: translateX(var(--service-start, 0)) translateY(24px);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.service-card:nth-child(3n + 1) {
+  --service-start: -90px;
+}
+
+.service-card:nth-child(3n + 2) {
+  --service-start: 0;
+}
+
+.service-card:nth-child(3n + 3) {
+  --service-start: 90px;
+}
+
+.services-preview.in-view .services-heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-preview.in-view .service-card {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.services-preview.in-view .service-card:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.services-preview.in-view .service-card:nth-child(3) {
+  transition-delay: 140ms;
+}
+
+.services-preview.in-view .service-card:nth-child(4) {
+  transition-delay: 200ms;
+}
+
+.services-preview.in-view .service-card:nth-child(5) {
+  transition-delay: 260ms;
+}
+
+.services-preview.in-view .service-card:nth-child(6) {
+  transition-delay: 320ms;
 }
 
 .service-card:hover {
   border-color: rgba(255, 167, 25, 0.85);
   box-shadow: 0 22px 54px rgba(26, 26, 26, 0.12);
   transform: translateY(-4px);
+}
+
+.services-preview.in-view .service-card:hover {
+  transform: translateY(-4px);
+  transition-duration: 180ms;
+  transition-delay: 0ms;
 }
 
 .service-card img {
@@ -789,6 +829,15 @@ img {
   gap: 12px;
   max-width: 1100px;
   margin: 38px auto 0;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 620ms ease, transform 620ms ease;
+}
+
+.services-preview.in-view .more-services {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 380ms;
 }
 
 .more-services span {
@@ -1523,7 +1572,6 @@ img {
   background:
     linear-gradient(rgba(26, 26, 26, 0.76), rgba(26, 26, 26, 0.72)),
     url("img/hero.avif") center / cover no-repeat;
-  clip-path: polygon(0 0, 100% 0, 100% 91%, 0 100%);
   text-align: center;
 }
 
@@ -1552,16 +1600,17 @@ img {
 .emergency-strip {
   position: relative;
   overflow: hidden;
-  margin-top: -162px;
-  margin-bottom: -1px;
-  padding: clamp(232px, 15vw, 284px) clamp(24px, 5vw, 96px) clamp(150px, 10vw, 184px);
+  margin-top: -138px;
+  margin-bottom: -142px;
+  padding: clamp(206px, 14vw, 252px) clamp(24px, 5vw, 96px) clamp(214px, 13vw, 254px);
   background: var(--accent);
-  clip-path: polygon(0 18%, 100% 7%, 100% 100%, 0 100%);
+  clip-path: polygon(0 12%, 100% 0, 100% calc(100% - 142px), 0 100%);
 }
 
 .emergency-page .site-footer {
   margin-top: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  padding-top: 144px;
+  clip-path: polygon(0 142px, 100% 0, 100% 100%, 0 100%);
 }
 
 .emergency-inner {
@@ -2424,6 +2473,217 @@ img {
   border: 2px solid var(--navy);
 }
 
+.quote-strip .quote-heading,
+.quote-strip .quote-form,
+.quote-strip .quote-cta,
+.stories-heading,
+.stories-carousel,
+.faq-heading,
+.faq-list,
+.site-footer .footer-inner,
+.site-footer .footer-bottom,
+.service-page-hero > div,
+.service-detail-copy,
+.service-side-card,
+.gallery-hero > div,
+.gallery-section .ba-card,
+.booking-hero > div,
+.booking-flow > *,
+.about-page-hero > div,
+.about-story-content,
+.about-story-media,
+.policy-hero > *,
+.policy-content .policy-card,
+.emergency-hero > div,
+.emergency-card,
+.emergency-map-card {
+  opacity: 0;
+  transition: opacity 760ms ease, transform 760ms ease;
+}
+
+.quote-strip .quote-heading,
+.quote-strip .quote-cta {
+  transform: translateY(-58px) scale(0.98);
+}
+
+.quote-strip .quote-form {
+  transform: translateY(46px);
+}
+
+.quote-strip.in-view .quote-heading,
+.quote-strip.in-view .quote-form,
+.quote-strip.in-view .quote-cta {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.quote-strip.in-view .quote-form {
+  transition-delay: 140ms;
+}
+
+.stories-heading {
+  transform: translateY(54px);
+}
+
+.stories-carousel {
+  transform: translateY(28px) scale(0.96);
+}
+
+.stories-strip.in-view .stories-heading,
+.stories-strip.in-view .stories-carousel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.stories-strip.in-view .stories-carousel {
+  transition-delay: 150ms;
+}
+
+.faq-heading {
+  transform: translateY(-42px);
+}
+
+.faq-list {
+  transform: translateY(38px);
+}
+
+.faq-section.in-view .faq-heading,
+.faq-section.in-view .faq-list {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.faq-section.in-view .faq-list {
+  transition-delay: 120ms;
+}
+
+.site-footer .footer-inner {
+  transform: translateY(46px);
+}
+
+.site-footer .footer-bottom {
+  transform: translateY(24px);
+}
+
+.site-footer.in-view .footer-inner,
+.site-footer.in-view .footer-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-footer.in-view .footer-bottom {
+  transition-delay: 120ms;
+}
+
+.service-page-hero > div,
+.gallery-hero > div,
+.booking-hero > div,
+.about-page-hero > div,
+.policy-hero > *,
+.emergency-hero > div {
+  transform: translateY(44px);
+}
+
+.service-page-hero.in-view > div,
+.gallery-hero.in-view > div,
+.booking-hero.in-view > div,
+.about-page-hero.in-view > div,
+.policy-hero.in-view > *,
+.emergency-hero.in-view > div {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-detail-copy,
+.about-story-content,
+.emergency-card {
+  transform: translateX(-64px);
+}
+
+.service-side-card,
+.about-story-media,
+.emergency-map-card {
+  transform: translateX(64px);
+}
+
+.service-detail.in-view .service-detail-copy,
+.service-detail.in-view .service-side-card,
+.about-story.in-view .about-story-content,
+.about-story.in-view .about-story-media,
+.emergency-strip.in-view .emergency-card,
+.emergency-strip.in-view .emergency-map-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.service-detail.in-view .service-side-card,
+.about-story.in-view .about-story-media,
+.emergency-strip.in-view .emergency-map-card {
+  transition-delay: 130ms;
+}
+
+.gallery-section .ba-card,
+.booking-flow > *,
+.policy-content .policy-card {
+  transform: translateY(46px);
+}
+
+.gallery-section.in-view .ba-card,
+.booking-flow.in-view > *,
+.policy-content.in-view .policy-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-section.in-view .ba-card:nth-child(2),
+.booking-flow.in-view > *:nth-child(2),
+.policy-content.in-view .policy-card:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.gallery-section.in-view .ba-card:nth-child(3),
+.booking-flow.in-view > *:nth-child(3),
+.policy-content.in-view .policy-card:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+.gallery-section.in-view .ba-card:nth-child(4),
+.booking-flow.in-view > *:nth-child(4),
+.policy-content.in-view .policy-card:nth-child(4) {
+  transition-delay: 230ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-strip .quote-heading,
+  .quote-strip .quote-form,
+  .quote-strip .quote-cta,
+  .stories-heading,
+  .stories-carousel,
+  .faq-heading,
+  .faq-list,
+  .site-footer .footer-inner,
+  .site-footer .footer-bottom,
+  .service-page-hero > div,
+  .service-detail-copy,
+  .service-side-card,
+  .gallery-hero > div,
+  .gallery-section .ba-card,
+  .booking-hero > div,
+  .booking-flow > *,
+  .about-page-hero > div,
+  .about-story-content,
+  .about-story-media,
+  .policy-hero > *,
+  .policy-content .policy-card,
+  .emergency-hero > div,
+  .emergency-card,
+  .emergency-map-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .ba-card {
   overflow: hidden;
   border: 1px solid rgba(139, 146, 153, 0.22);
@@ -2800,10 +3060,15 @@ img {
   }
 
   .emergency-strip {
-    margin-top: -128px;
-    margin-bottom: -1px;
-    padding: 196px 22px 126px;
-    clip-path: polygon(0 14%, 100% 6%, 100% 100%, 0 100%);
+    margin-top: -108px;
+    margin-bottom: -106px;
+    padding: 164px 22px 178px;
+    clip-path: polygon(0 10%, 100% 0, 100% calc(100% - 106px), 0 100%);
+  }
+
+  .emergency-page .site-footer {
+    padding-top: 108px;
+    clip-path: polygon(0 106px, 100% 0, 100% 100%, 0 100%);
   }
 
   .emergency-inner {
