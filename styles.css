@@ -3241,11 +3241,19 @@ img {
 
   .services-heading {
     margin-bottom: 36px;
+    opacity: 1;
+    transform: none;
   }
 
   .services-grid {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+
+  .service-card,
+  .more-services {
+    opacity: 1;
+    transform: none;
   }
 
   .service-card img {
