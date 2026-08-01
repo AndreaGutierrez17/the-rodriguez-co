@@ -75,21 +75,26 @@ const observer = new IntersectionObserver(
 
 sections.forEach((section) => observer.observe(section));
 
-const animationObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        animationObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.25,
-  }
-);
+if ("IntersectionObserver" in window) {
+  const animationObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          animationObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -8% 0px",
+      threshold: 0.08,
+    }
+  );
 
-animatedSections.forEach((section) => animationObserver.observe(section));
+  animatedSections.forEach((section) => animationObserver.observe(section));
+} else {
+  animatedSections.forEach((section) => section.classList.add("in-view"));
+}
 
 menuToggle.addEventListener("click", () => {
   const isOpen = header.classList.toggle("nav-open");
