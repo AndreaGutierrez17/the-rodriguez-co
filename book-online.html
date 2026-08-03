@@ -27,8 +27,7 @@
         <span></span>
         <span></span>
       </button>
-
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a class="mobile-header-cta" href="book-online.html">Book Online</a>      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="about.html">About Us</a>
 
@@ -39,27 +38,29 @@
           </button>
 
           <div class="mega-menu" aria-label="Services menu">
-            <a href="roofing.html">
-              <span>Roofing</span>
-              <small>Repairs, replacements, and storm support.</small>
-            </a>
-            <a href="kitchen-bath.html">
-              <span>Kitchen & Bath</span>
-              <small>Functional remodels with clean finishes.</small>
-            </a>
-            <a href="handyman.html">
-              <span>Handyman</span>
-              <small>Reliable repairs for homes and businesses.</small>
-            </a>
-            <a href="exterior-work.html">
-              <span>Exterior Work</span>
-              <small>Siding, fencing, concrete, decks, and patios.</small>
-            </a>
+            <a href="handyman.html"><span>Handyman</span></a>
+            <a href="handyman.html"><span>Plumbing</span></a>
+            <a href="handyman.html"><span>Electrical</span></a>
+            <a href="handyman.html"><span>Painting</span></a>
+            <a href="handyman.html"><span>Flooring</span></a>
+            <a href="exterior-work.html"><span>Fencing</span></a>
+            <a href="roofing.html"><span>Roofing</span></a>
+            <a href="kitchen-bath.html"><span>Kitchen &amp; Bathroom Remodels</span></a>
+            <a href="exterior-work.html"><span>Deck &amp; Patio</span></a>
+            <a href="exterior-work.html"><span>Doors &amp; Windows</span></a>
+            <a href="exterior-work.html"><span>Concrete</span></a>
+            <a href="exterior-work.html"><span>Siding</span></a>
+            <a href="handyman.html"><span>Carpentry</span></a>
+            <a href="roofing.html"><span>Insurance Claims</span></a>
           </div>
         </div>
 
         <a class="nav-link" href="gallery.html">Gallery</a>
         <a class="nav-link" href="index.html#faq">FAQ</a>
+        <a class="nav-link nav-emergency" href="emergency.html">
+          <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+          Emergency
+        </a>
         <a class="nav-link nav-cta active" href="book-online.html">Book Online</a>
       </nav>
     </header>
@@ -78,120 +79,96 @@
         </div>
       </section>
 
-      <section class="booking-flow" aria-label="Book online demo flow">
-        <div class="booking-demo-note">
-          <strong>Demo only:</strong> this screen simulates booking and payment.
-          No real card is charged from this static website.
-        </div>
-
-        <div class="booking-stepper" aria-label="Booking steps">
-          <button class="booking-step active" type="button" data-booking-step-button="1">1. Date & Time</button>
-          <button class="booking-step" type="button" data-booking-step-button="2">2. Your Info</button>
-          <button class="booking-step" type="button" data-booking-step-button="3">3. Confirm Deposit</button>
-        </div>
-
-        <div class="booking-panel active" data-booking-panel="1">
-          <div class="booking-grid">
-            <div class="booking-box">
-              <div class="booking-calendar-head">
-                <button type="button" aria-label="Previous month"><i class="bi bi-chevron-left"></i></button>
-                <strong>August 2026</strong>
-                <button type="button" aria-label="Next month"><i class="bi bi-chevron-right"></i></button>
-              </div>
-
-              <div class="booking-calendar" aria-label="Choose appointment date">
-                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-                <button type="button" disabled></button><button type="button" disabled></button><button type="button" disabled></button><button type="button" disabled></button><button type="button" disabled></button>
-                <button type="button" data-booking-day="1">1</button><button type="button" data-booking-day="2">2</button><button type="button" data-booking-day="3">3</button><button type="button" data-booking-day="4">4</button><button type="button" data-booking-day="5">5</button><button type="button" data-booking-day="6">6</button><button type="button" data-booking-day="7">7</button><button type="button" data-booking-day="8">8</button><button class="selected" type="button" data-booking-day="9">9</button><button type="button" data-booking-day="10">10</button><button type="button" data-booking-day="11">11</button><button type="button" data-booking-day="12">12</button><button type="button" data-booking-day="13">13</button><button type="button" data-booking-day="14">14</button><button type="button" data-booking-day="15">15</button><button type="button" data-booking-day="16">16</button>
-              </div>
-
-              <div class="booking-slots" aria-label="Choose appointment time">
-                <button class="selected" type="button" data-booking-time="9:00 AM">9:00 AM</button>
-                <button type="button" data-booking-time="11:00 AM">11:00 AM</button>
-                <button type="button" data-booking-time="1:00 PM">1:00 PM</button>
-                <button type="button" data-booking-time="3:00 PM">3:00 PM</button>
-                <button type="button" data-booking-time="4:30 PM">4:30 PM</button>
-                <button type="button" data-booking-time="6:00 PM">6:00 PM</button>
-              </div>
-            </div>
-
-            <aside class="booking-box booking-summary-card">
-              <label>
-                <span>Service Needed</span>
-                <select data-booking-service>
-                  <option>Roofing</option>
-                  <option>Kitchen Remodeling</option>
-                  <option>Bathroom Remodeling</option>
-                  <option>Handyman / Other</option>
-                  <option>Exterior Work</option>
-                  <option>Insurance Claim</option>
-                </select>
-              </label>
-              <p>Selected appointment</p>
-              <strong data-booking-selected>Aug 9, 2026 - 9:00 AM</strong>
-              <button class="booking-action" type="button" data-booking-next>Continue</button>
-            </aside>
+      <section class="booking-flow single-booking-flow" aria-label="Book online request form">
+        <form class="booking-box booking-request-card" action="#" method="post">
+          <div class="booking-request-heading">
+            <p class="eyebrow dark">Request An Estimate</p>
+            <h2>Tell Us About Your Project</h2>
+            <p>
+              Submit the details in one step. The Rodriguez Co will review your
+              request and follow up to confirm availability and next steps.
+            </p>
           </div>
-        </div>
 
-        <div class="booking-panel" data-booking-panel="2">
-          <div class="booking-box booking-info-box">
-            <div class="booking-form-grid">
-              <label><span>First Name</span><input type="text" placeholder="First name" /></label>
-              <label><span>Last Name</span><input type="text" placeholder="Last name" /></label>
-              <label><span>Phone</span><input type="tel" placeholder="(346) 000-0000" /></label>
-              <label><span>Email</span><input type="email" placeholder="you@email.com" /></label>
-              <label class="full"><span>Property Address</span><input type="text" placeholder="123 Main St, Pearland, TX" /></label>
-              <label class="full"><span>Project Notes</span><textarea rows="4" placeholder="Tell us about the repair, remodel, or roofing issue."></textarea></label>
-              <label class="full booking-file-label">
-                <span>Project Photos</span>
-                <input type="file" multiple data-booking-file />
-                <strong><i class="bi bi-cloud-arrow-up-fill" aria-hidden="true"></i> Upload Project Photos</strong>
-                <small data-booking-file-name>No files selected</small>
-              </label>
-            </div>
-            <div class="booking-buttons">
-              <button class="booking-action secondary" type="button" data-booking-prev>Back</button>
-              <button class="booking-action" type="button" data-booking-next>Continue To Deposit</button>
-            </div>
+          <div class="booking-form-grid booking-single-grid">
+            <label>
+              <span>Service Needed</span>
+              <div class="custom-select" data-custom-select>
+                <input type="hidden" name="service" value="" data-booking-service />
+                <button class="custom-select-trigger" type="button" aria-expanded="false">
+                  <span>Select a service</span>
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="custom-select-menu" role="listbox">
+                  <button type="button" data-value="Roofing">Roofing</button>
+                  <button type="button" data-value="Plumbing">Plumbing</button>
+                  <button type="button" data-value="Electrical">Electrical</button>
+                  <button type="button" data-value="Painting">Painting</button>
+                  <button type="button" data-value="Flooring">Flooring</button>
+                  <button type="button" data-value="Fencing">Fencing</button>
+                  <button type="button" data-value="Kitchen & Bathroom Remodels">Kitchen &amp; Bathroom Remodels</button>
+                  <button type="button" data-value="Deck & Patio">Deck &amp; Patio</button>
+                  <button type="button" data-value="Doors & Windows">Doors &amp; Windows</button>
+                  <button type="button" data-value="Concrete">Concrete</button>
+                  <button type="button" data-value="Siding">Siding</button>
+                  <button type="button" data-value="Carpentry">Carpentry</button>
+                  <button type="button" data-value="Insurance Claims">Insurance Claims</button>
+                  <button type="button" data-value="Handyman">Handyman</button>
+                </div>
+              </div>
+            </label>
+
+            <label>
+              <span>Preferred Date</span>
+              <input type="date" name="date" />
+            </label>
+
+            <label>
+              <span>Preferred Time</span>
+              <input type="time" name="time" />
+            </label>
+
+            <label>
+              <span>First Name</span>
+              <input type="text" name="first-name" placeholder="First name" autocomplete="given-name" />
+            </label>
+
+            <label>
+              <span>Last Name</span>
+              <input type="text" name="last-name" placeholder="Last name" autocomplete="family-name" />
+            </label>
+
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@email.com" autocomplete="email" />
+            </label>
+
+            <label class="full">
+              <span>Property Address</span>
+              <input type="text" name="address" placeholder="Pearland, Houston, or surrounding area" autocomplete="street-address" />
+            </label>
+
+            <label class="full">
+              <span>Project Notes</span>
+              <textarea name="notes" rows="5" placeholder="Tell us about the repair, remodel, roof issue, or project scope."></textarea>
+            </label>
+
+            <label class="full booking-file-label">
+              <span>Project Photos</span>
+              <input type="file" name="photos" accept="image/*" multiple data-booking-file />
+              <strong><i class="bi bi-cloud-arrow-up-fill" aria-hidden="true"></i> Upload Project Photos</strong>
+              <small data-booking-file-name>No files selected</small>
+            </label>
           </div>
-        </div>
 
-        <div class="booking-panel" data-booking-panel="3">
-          <div class="booking-grid">
-            <div class="booking-box">
-              <h2>Reserve Your Estimate Visit</h2>
-              <p class="booking-payment-copy">
-                A small appointment deposit may be requested to hold your slot.
-                If you move forward with the project, it can be applied toward
-                your final balance.
-              </p>
-              <div class="booking-form-grid">
-                <label class="full"><span>Name on Card</span><input type="text" placeholder="Demo Cardholder" /></label>
-                <label class="full"><span>Card Number</span><input type="text" placeholder="4242 4242 4242 4242" /></label>
-                <label><span>Expiry</span><input type="text" placeholder="MM/YY" /></label>
-                <label><span>CVC</span><input type="text" placeholder="123" /></label>
-              </div>
-              <div class="booking-payment-actions">
-                <button class="booking-action" type="button" data-booking-confirm>Pay Demo Deposit & Confirm</button>
-              </div>
-              <p class="booking-secure-note"><i class="bi bi-shield-lock-fill"></i> Demo Stripe-style payment screen. No real charge.</p>
-              <div class="booking-success" data-booking-success>
-                Demo booking confirmed. In production, this would create the appointment and process the deposit securely.
-              </div>
-            </div>
-
-            <aside class="booking-box booking-order">
-              <h2>Booking Summary</h2>
-              <div><span>Service</span><strong data-booking-summary-service>Roofing</strong></div>
-              <div><span>Appointment</span><strong data-booking-summary-date>Aug 9, 2026 - 9:00 AM</strong></div>
-              <div><span>Estimate visit</span><strong>$0.00</strong></div>
-              <div><span>Deposit to hold slot</span><strong>$50.00</strong></div>
-              <div class="total"><span>Due today</span><strong>$50.00</strong></div>
-              <button class="booking-action secondary" type="button" data-booking-prev>Back To Info</button>
-            </aside>
-          </div>
-        </div>
+          <button class="booking-action booking-submit" type="submit">Submit Request</button>
+          <p class="booking-secure-note"><i class="bi bi-shield-check"></i> This demo sends a request only.</p>
+        </form>
       </section>
     </main>
 
@@ -203,14 +180,14 @@
 
         <div class="footer-contact">
           <p class="footer-label">Contact</p>
-          <p class="footer-row"><i class="bi bi-person footer-icon" aria-hidden="true"></i>George Rodriguez</p>
-          <a class="footer-row" href="tel:+18327745582"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>832 774 5582</a>
+          <p class="footer-row"><i class="bi bi-building footer-icon" aria-hidden="true"></i>The Rodriguez Co</p>
+          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
           <p class="footer-row"><i class="bi bi-geo-alt footer-icon" aria-hidden="true"></i>Serving Pearland, Houston and Surrounding Area</p>
         </div>
 
         <div class="footer-contact">
-          <p class="footer-label">Emergency Support Line</p>
-          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
+          <p class="footer-label">Emergency Support</p>
+          <a class="footer-row" href="emergency.html"><i class="bi bi-shield-check footer-icon" aria-hidden="true"></i>Request urgent help online</a>
           <a class="footer-row" href="mailto:admin@therodriguezco.com"><i class="bi bi-envelope footer-icon" aria-hidden="true"></i>admin@therodriguezco.com</a>
         </div>
       </div>

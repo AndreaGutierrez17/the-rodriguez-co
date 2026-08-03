@@ -27,8 +27,7 @@
         <span></span>
         <span></span>
       </button>
-
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a class="mobile-header-cta" href="book-online.html">Book Online</a>      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="about.html">About Us</a>
 
@@ -39,27 +38,29 @@
           </button>
 
           <div class="mega-menu" aria-label="Services menu">
-            <a href="roofing.html">
-              <span>Roofing</span>
-              <small>Repairs, replacements, and storm support.</small>
-            </a>
-            <a href="kitchen-bath.html">
-              <span>Kitchen & Bath</span>
-              <small>Functional remodels with clean finishes.</small>
-            </a>
-            <a href="handyman.html">
-              <span>Handyman</span>
-              <small>Reliable repairs for homes and businesses.</small>
-            </a>
-            <a href="exterior-work.html">
-              <span>Exterior Work</span>
-              <small>Siding, fencing, concrete, decks, and patios.</small>
-            </a>
+            <a href="handyman.html"><span>Handyman</span></a>
+            <a href="handyman.html"><span>Plumbing</span></a>
+            <a href="handyman.html"><span>Electrical</span></a>
+            <a href="handyman.html"><span>Painting</span></a>
+            <a href="handyman.html"><span>Flooring</span></a>
+            <a href="exterior-work.html"><span>Fencing</span></a>
+            <a href="roofing.html"><span>Roofing</span></a>
+            <a href="kitchen-bath.html"><span>Kitchen &amp; Bathroom Remodels</span></a>
+            <a href="exterior-work.html"><span>Deck &amp; Patio</span></a>
+            <a href="exterior-work.html"><span>Doors &amp; Windows</span></a>
+            <a href="exterior-work.html"><span>Concrete</span></a>
+            <a href="exterior-work.html"><span>Siding</span></a>
+            <a href="handyman.html"><span>Carpentry</span></a>
+            <a href="roofing.html"><span>Insurance Claims</span></a>
           </div>
         </div>
 
         <a class="nav-link" href="gallery.html">Gallery</a>
         <a class="nav-link" href="index.html#faq">FAQ</a>
+        <a class="nav-link nav-emergency active" href="emergency.html">
+          <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+          Emergency
+        </a>
         <a class="nav-link nav-cta" href="book-online.html">Book Online</a>
       </nav>
     </header>
@@ -67,7 +68,7 @@
     <main>
       <section class="emergency-hero section-target" id="emergency">
         <div>
-          <p class="eyebrow">Emergency Support Line</p>
+          <p class="eyebrow">Emergency Support</p>
           <h1>Fast Help For Urgent Repairs</h1>
           <span class="service-title-line" aria-hidden="true"></span>
           <p>
@@ -77,7 +78,7 @@
         </div>
       </section>
 
-      <section class="emergency-strip" aria-label="Emergency contact and map">
+      <section class="emergency-strip" aria-label="Emergency support form">
         <div class="quote-strip-bg" aria-hidden="true"></div>
         <div class="emergency-inner">
           <div class="emergency-card">
@@ -85,14 +86,6 @@
             <h2>Emergency Support</h2>
 
             <div class="emergency-list">
-              <a class="emergency-row" href="tel:+13463583921">
-                <span><i class="bi bi-telephone-fill" aria-hidden="true"></i></span>
-                <div>
-                  <strong>Phone</strong>
-                  <p>(346) 358-3921</p>
-                </div>
-              </a>
-
               <a class="emergency-row" href="mailto:admin@therodriguezco.com">
                 <span><i class="bi bi-envelope-fill" aria-hidden="true"></i></span>
                 <div>
@@ -119,19 +112,72 @@
             </div>
 
             <div class="quote-cta-actions emergency-actions">
-              <a class="quote-cta-button" href="tel:+13463583921">Call Now</a>
+              <a class="quote-cta-button" href="tel:+18327745582">Call Now</a>
               <a class="quote-cta-button secondary" href="book-online.html">Book Online</a>
             </div>
           </div>
 
-          <div class="emergency-map-card">
-            <iframe
-              title="Map showing Pearland, Texas 77584"
-              src="https://www.google.com/maps?q=Pearland%2C%20TX%2077584&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+          <form class="emergency-form-card" action="#" method="post">
+            <p class="eyebrow dark">Emergency Request</p>
+            <h2>Tell Us What Happened</h2>
+
+            <div class="emergency-form-grid">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" placeholder="Your name" autocomplete="name" />
+              </label>
+
+              <label>
+                <span>Phone</span>
+                <input type="tel" name="phone" placeholder="Best phone number" autocomplete="tel" />
+              </label>
+
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" placeholder="you@email.com" autocomplete="email" />
+              </label>
+
+              <label>
+                <span>Service Needed</span>
+                <div class="custom-select" data-custom-select>
+                  <input type="hidden" name="service" value="" />
+                  <button class="custom-select-trigger" type="button" aria-expanded="false">
+                    <span>Select a service</span>
+                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                  </button>
+                  <div class="custom-select-menu" role="listbox">
+                    <button type="button" data-value="Roofing">Roofing</button>
+                    <button type="button" data-value="Plumbing">Plumbing</button>
+                    <button type="button" data-value="Electrical">Electrical</button>
+                    <button type="button" data-value="Painting">Painting</button>
+                    <button type="button" data-value="Flooring">Flooring</button>
+                    <button type="button" data-value="Fencing">Fencing</button>
+                    <button type="button" data-value="Kitchen & Bathroom Remodels">Kitchen &amp; Bathroom Remodels</button>
+                    <button type="button" data-value="Deck & Patio">Deck &amp; Patio</button>
+                    <button type="button" data-value="Doors & Windows">Doors &amp; Windows</button>
+                    <button type="button" data-value="Concrete">Concrete</button>
+                    <button type="button" data-value="Siding">Siding</button>
+                    <button type="button" data-value="Carpentry">Carpentry</button>
+                    <button type="button" data-value="Insurance Claims">Insurance Claims</button>
+                    <button type="button" data-value="Handyman">Handyman</button>
+                  </div>
+                </div>
+              </label>
+
+              <label class="full">
+                <span>Emergency Description</span>
+                <textarea name="description" placeholder="Describe the urgent issue, damage, location, and what needs attention."></textarea>
+              </label>
+
+              <label class="booking-file-label emergency-file-label full">
+                <input type="file" name="photos" accept="image/*" multiple />
+                <strong><i class="bi bi-cloud-arrow-up-fill" aria-hidden="true"></i>Upload Project Photos</strong>
+                <small>Add photos of the damage or repair area.</small>
+              </label>
+            </div>
+
+            <button class="booking-action emergency-submit" type="submit">Send Emergency Request</button>
+          </form>
         </div>
       </section>
     </main>
@@ -144,14 +190,14 @@
 
         <div class="footer-contact">
           <p class="footer-label">Contact</p>
-          <p class="footer-row"><i class="bi bi-person footer-icon" aria-hidden="true"></i>George Rodriguez</p>
-          <a class="footer-row" href="tel:+18327745582"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>832 774 5582</a>
+          <p class="footer-row"><i class="bi bi-building footer-icon" aria-hidden="true"></i>The Rodriguez Co</p>
+          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
           <p class="footer-row"><i class="bi bi-geo-alt footer-icon" aria-hidden="true"></i>Serving Pearland, Houston and Surrounding Area</p>
         </div>
 
         <div class="footer-contact">
-          <p class="footer-label">Emergency Support Line</p>
-          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
+          <p class="footer-label">Emergency Support</p>
+          <a class="footer-row" href="emergency.html"><i class="bi bi-shield-check footer-icon" aria-hidden="true"></i>Request urgent help online</a>
           <a class="footer-row" href="mailto:admin@therodriguezco.com"><i class="bi bi-envelope footer-icon" aria-hidden="true"></i>admin@therodriguezco.com</a>
         </div>
       </div>

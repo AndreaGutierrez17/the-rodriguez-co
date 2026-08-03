@@ -28,6 +28,8 @@
         <span></span>
       </button>
 
+      <a class="mobile-header-cta" href="book-online.html">Book Online</a>
+
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="nav-link active" href="#home">Home</a>
         <a class="nav-link" href="about.html">About Us</a>
@@ -39,72 +41,61 @@
           </button>
 
           <div class="mega-menu" aria-label="Services menu">
-            <a href="roofing.html">
-              <span>Roofing</span>
-              <small>Repairs, replacements, and storm support.</small>
-            </a>
-            <a href="kitchen-bath.html">
-              <span>Kitchen & Bath</span>
-              <small>Functional remodels with clean finishes.</small>
-            </a>
-            <a href="handyman.html">
-              <span>Handyman</span>
-              <small>Reliable repairs for homes and businesses.</small>
-            </a>
-            <a href="exterior-work.html">
-              <span>Exterior Work</span>
-              <small>Siding, fencing, concrete, decks, and patios.</small>
-            </a>
+            <a href="handyman.html"><span>Handyman</span></a>
+            <a href="handyman.html"><span>Plumbing</span></a>
+            <a href="handyman.html"><span>Electrical</span></a>
+            <a href="handyman.html"><span>Painting</span></a>
+            <a href="handyman.html"><span>Flooring</span></a>
+            <a href="exterior-work.html"><span>Fencing</span></a>
+            <a href="roofing.html"><span>Roofing</span></a>
+            <a href="kitchen-bath.html"><span>Kitchen &amp; Bathroom Remodels</span></a>
+            <a href="exterior-work.html"><span>Deck &amp; Patio</span></a>
+            <a href="exterior-work.html"><span>Doors &amp; Windows</span></a>
+            <a href="exterior-work.html"><span>Concrete</span></a>
+            <a href="exterior-work.html"><span>Siding</span></a>
+            <a href="handyman.html"><span>Carpentry</span></a>
+            <a href="roofing.html"><span>Insurance Claims</span></a>
           </div>
         </div>
 
         <a class="nav-link" href="gallery.html">Gallery</a>
         <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link nav-emergency" href="emergency.html">
+          <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+          Emergency
+        </a>
         <a class="nav-link nav-cta" href="book-online.html">Book Online</a>
       </nav>
     </header>
 
     <main>
       <section class="hero section-target" id="home" aria-label="The Rodriguez Co hero">
+        <div class="hero-bg-carousel" aria-hidden="true" data-hero-carousel>
+          <img class="active" src="img/hero.avif" alt="" />
+          <img src="img/hero-2.jpeg" alt="" />
+          <img src="img/Cocina 1.jpeg" alt="" />
+          <img src="img/Bano 3.png" alt="" />
+          <div class="hero-carousel-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
         <div class="hero-backdrop" aria-hidden="true"></div>
         <div class="hero-content">
-          <p class="eyebrow">Houston & Pearland Renovation Experts</p>
-          <h1>Built Right. Repaired Right.</h1>
+          <p class="eyebrow" data-hero-eyebrow>Houston & Pearland Renovation Experts</p>
+          <h1 data-hero-title>Built Right. Repaired Right.</h1>
           <span class="hero-title-line" aria-hidden="true"></span>
-          <p class="hero-copy">
+          <p class="hero-copy" data-hero-copy>
             Roofing to full remodels — done right the first time.
           </p>
-          <div class="hero-actions">
-            <a class="hero-action emergency-action" href="emergency.html">
-              <i class="bi bi-telephone-fill" aria-hidden="true"></i>
-              Emergency Support
-            </a>
-            <a class="hero-action" href="book-online.html">Book Online</a>
-          </div>
+          <!-- TODO: replace with real Google rating and review count -->
+          <p class="hero-trust-line">
+            ⭐ <span data-google-rating>4.9</span> (<span data-google-review-count>120+ reviews</span>) · Licensed &amp; Insured
+          </p>
         </div>
 
-        <div class="hero-media" aria-label="Completed remodeling work by The Rodriguez Co">
-          <img src="img/hero-2.jpeg" alt="Finished kitchen remodel with white cabinets and stone countertop" />
-        </div>
-
-        <div class="trust-seal" aria-label="Trusted local renovation experts">
-          <svg class="seal-ring" viewBox="0 0 200 200" aria-hidden="true">
-            <defs>
-              <path
-                id="seal-circle"
-                d="M 100,100 m -74,0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0"
-              />
-            </defs>
-            <text>
-              <textPath href="#seal-circle" startOffset="0">
-                Trusted Local Builders * Roofing & Remodeling *
-              </textPath>
-            </text>
-          </svg>
-          <div class="seal-center">
-            <img src="img/circulo-hero.png" alt="" aria-hidden="true" />
-          </div>
-        </div>
       </section>
 
       <section class="about-preview section-target" id="about">
@@ -137,51 +128,71 @@
         </div>
       </section>
 
-      <section class="trust-strip" aria-label="The Rodriguez Co service highlights">
-        <div class="trust-strip-bg" aria-hidden="true"></div>
-        <div class="trust-item">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M7 33 32 13l25 20" />
-            <path d="M14 31v22h36V31" />
-            <path d="M25 53V38h14v15" />
-          </svg>
-          <div>
-            <strong>Roofing & Remodels</strong>
-            <span>From repairs to complete transformations.</span>
-          </div>
+      <section class="trust-strip" aria-label="Why choose The Rodriguez Co">
+        <div class="trust-copy">
+          <p class="eyebrow dark">Why Choose The Rodriguez Co</p>
+          <h2>An Elevated Level Of Contractor Integrity</h2>
+          <p>
+            We combine elite workmanship with structural trust badges to deliver top-tier homeowner and retail tenant improvements.
+          </p>
         </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path d="m39 10 15 15-9 9-6-6-18 18-6-6 18-18-6-6 12-6Z" />
-            <path d="m18 43-8 8 3 3 8-8" />
-          </svg>
-          <div>
-            <strong>Home Repairs</strong>
-            <span>Reliable handyman work for everyday needs.</span>
-          </div>
+      </section>
+
+      <section class="integrity-grid-section" aria-label="The Rodriguez Co contractor commitments">
+        <div class="integrity-intro">
+          <p class="eyebrow">Built On Trust</p>
+          <h2>Contractor standards homeowners can verify.</h2>
+          <p>
+            Clear communication, insured crews, honest pricing, and dependable workmanship guide every Rodriguez Co project.
+          </p>
         </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M18 8h28v48H18z" />
-            <path d="M25 20h14" />
-            <path d="M25 31h14" />
-            <path d="M25 42h8" />
-            <path d="m40 43 4 4 8-10" />
-          </svg>
-          <div>
-            <strong>Free Estimates</strong>
-            <span>Clear scope and pricing before work begins.</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 56s18-17 18-32a18 18 0 0 0-36 0c0 15 18 32 18 32Z" />
-            <circle cx="32" cy="24" r="7" />
-          </svg>
-          <div>
-            <strong>Local Service Area</strong>
-            <span>Serving Houston, Pearland, and nearby communities.</span>
-          </div>
+
+        <div class="integrity-grid">
+          <article class="integrity-card">
+            <span><i class="bi bi-geo-alt" aria-hidden="true"></i></span>
+            <h3>Locally Owned</h3>
+            <p>Deeply rooted in Pearland, we understand local Texas building codes, weather, and property needs.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-shield-check" aria-hidden="true"></i></span>
+            <h3>Fully Insured</h3>
+            <p>We prioritize safety and peace of mind with dependable liability coverage for every job.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-star" aria-hidden="true"></i></span>
+            <h3>Licensed Professionals</h3>
+            <p>Experienced crews deliver detail-driven repair, roofing, remodeling, and general contracting work.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-clipboard-check" aria-hidden="true"></i></span>
+            <h3>Free Estimate</h3>
+            <p>Clear, no-pressure estimates help you understand the scope before the work begins.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-currency-dollar" aria-hidden="true"></i></span>
+            <h3>Honest Pricing</h3>
+            <p>No hidden line items. The estimate is built to keep expectations clear from day one.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-lightning-charge" aria-hidden="true"></i></span>
+            <h3>Fast Response</h3>
+            <p>We respond quickly so homeowners are not left waiting weeks for repair or estimate updates.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-award" aria-hidden="true"></i></span>
+            <h3>Quality Materials</h3>
+            <p>We use durable, proven products selected for long-term performance and clean finishes.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-house-heart" aria-hidden="true"></i></span>
+            <h3>Family-Owned Business</h3>
+            <p>We put our name on every project with personalized responsibility and direct communication.</p>
+          </article>
+          <article class="integrity-card">
+            <span><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></span>
+            <h3>Workmanship Guaranteed</h3>
+            <p>Every repair, remodel, and installation is backed by a commitment to make it right.</p>
+          </article>
         </div>
       </section>
       <section class="services-preview section-target" id="services">
@@ -433,6 +444,33 @@
           </article>
         </div>
       </section>
+
+      <section class="social-section" aria-label="Follow The Rodriguez Co on social media">
+        <div class="social-section-heading">
+          <p class="eyebrow dark">Follow Our Work</p>
+          <h2>Connect With The Rodriguez Co</h2>
+          <p>See recent projects, updates, and behind-the-scenes work from the team.</p>
+        </div>
+
+        <div class="social-card-grid">
+          <a class="social-card instagram-social" href="#" aria-label="Follow The Rodriguez Co on Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+            <span>Instagram</span>
+          </a>
+          <a class="social-card facebook-social" href="#" aria-label="Follow The Rodriguez Co on Facebook">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+          <a class="social-card linkedin-social" href="#" aria-label="Follow The Rodriguez Co on LinkedIn">
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a class="social-card tiktok-social" href="#" aria-label="Follow The Rodriguez Co on TikTok">
+            <i class="bi bi-tiktok" aria-hidden="true"></i>
+            <span>TikTok</span>
+          </a>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -443,14 +481,14 @@
 
         <div class="footer-contact">
           <p class="footer-label">Contact</p>
-          <p class="footer-row"><i class="bi bi-person footer-icon" aria-hidden="true"></i>George Rodriguez</p>
-          <a class="footer-row" href="tel:+18327745582"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>832 774 5582</a>
+          <p class="footer-row"><i class="bi bi-building footer-icon" aria-hidden="true"></i>The Rodriguez Co</p>
+          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
           <p class="footer-row"><i class="bi bi-geo-alt footer-icon" aria-hidden="true"></i>Serving Pearland, Houston and Surrounding Area</p>
         </div>
 
         <div class="footer-contact">
-          <p class="footer-label">Emergency Support Line</p>
-          <a class="footer-row" href="tel:+13463583921"><i class="bi bi-telephone footer-icon" aria-hidden="true"></i>+1 346 358 3921</a>
+          <p class="footer-label">Emergency Support</p>
+          <a class="footer-row" href="emergency.html"><i class="bi bi-shield-check footer-icon" aria-hidden="true"></i>Request urgent help online</a>
           <a class="footer-row" href="mailto:admin@therodriguezco.com"><i class="bi bi-envelope footer-icon" aria-hidden="true"></i>admin@therodriguezco.com</a>
         </div>
       </div>

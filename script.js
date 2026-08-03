@@ -4,15 +4,87 @@ const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = [...document.querySelectorAll(".section-target")];
 const animatedSections = [
   ...document.querySelectorAll(
-    ".about-preview, .trust-strip, .services-preview, .quote-strip, .stories-strip, .faq-section, .site-footer, .service-page-hero, .service-detail, .gallery-hero, .gallery-section, .booking-hero, .booking-flow, .about-page-hero, .about-story, .policy-hero, .policy-content, .emergency-hero, .emergency-strip"
+    ".about-preview, .trust-strip, .integrity-grid-section, .services-preview, .quote-strip, .stories-strip, .faq-section, .social-section, .site-footer, .service-page-hero, .service-detail, .gallery-hero, .gallery-section, .booking-hero, .booking-flow, .about-page-hero, .about-story, .policy-hero, .policy-content, .emergency-hero, .emergency-strip"
   ),
 ];
 const carousel = document.querySelector("[data-carousel]");
+const heroCarousel = document.querySelector("[data-hero-carousel]");
 const faqItems = [...document.querySelectorAll(".faq-item")];
 const mobileNavQuery = window.matchMedia("(max-width: 820px)");
 const megaItems = [...document.querySelectorAll(".has-mega")];
-const beforeAfterSliders = [...document.querySelectorAll(".ba-slider")];
+const galleryGrid = document.querySelector("[data-gallery-grid]");
+const galleryFilters = [...document.querySelectorAll("[data-gallery-filter]")];
 const bookingFlow = document.querySelector(".booking-flow");
+const customSelects = [...document.querySelectorAll("[data-custom-select]")];
+
+const galleryImagePairs = [
+  {
+    before: "img/Bano 4.png",
+    after: "img/BANO 1.1.png",
+    beforeAlt: "Project before work",
+    afterAlt: "Project completed work",
+  },
+  {
+    before: "img/Bano 3.png",
+    after: "img/BANO 2.1.png",
+    beforeAlt: "Bathroom before remodel",
+    afterAlt: "Bathroom completed remodel",
+  },
+  {
+    before: "img/WhatsApp Image 2026-07-30 at 14.21.46.jpeg",
+    after: "img/hero-2.jpeg",
+    beforeAlt: "Kitchen before remodel",
+    afterAlt: "Kitchen completed remodel",
+  },
+  {
+    before: "img/WhatsApp Image 2026-07-30 at 14.22.43 (1).jpeg",
+    after: "img/Cocina 2.png",
+    beforeAlt: "Interior before finish work",
+    afterAlt: "Interior completed finish work",
+  },
+  {
+    before: "img/Entry columns made out of stone 3.jpeg",
+    after: "img/Gate entry.png",
+    beforeAlt: "Exterior before upgrade",
+    afterAlt: "Exterior completed upgrade",
+  },
+  {
+    before: "img/WhatsApp Image 2026-07-30 at 14.22.43.jpeg",
+    after: "img/Cocina 1.jpeg",
+    beforeAlt: "Residential work before",
+    afterAlt: "Residential work completed",
+  },
+];
+
+const galleryCategories = [
+  { id: "roofing", label: "Roofing", copy: "Roof repairs, replacements, storm support, and exterior protection." },
+  { id: "plumbing", label: "Plumbing", copy: "Fixture swaps, leak support, bathroom plumbing, and utility improvements." },
+  { id: "electrical", label: "Electrical", copy: "Lighting updates, fixture installs, and practical electrical improvements." },
+  { id: "painting", label: "Painting", copy: "Interior and exterior paint updates with clean prep and finish work." },
+  { id: "flooring", label: "Flooring", copy: "Durable flooring updates, transitions, trim, and clean room finishes." },
+  { id: "fencing", label: "Fencing", copy: "Fence repairs, replacements, gate work, and exterior boundary upgrades." },
+  { id: "kitchen-bath", label: "Kitchen & Bath", copy: "Kitchen and bathroom remodel details with clean modern finishes." },
+  { id: "deck-patio", label: "Deck & Patio", copy: "Deck, patio, and outdoor living updates built for everyday use." },
+  { id: "doors-windows", label: "Doors & Windows", copy: "Door and window repairs, replacements, trim, and exterior finishing." },
+  { id: "concrete", label: "Concrete", copy: "Concrete repairs, patios, walkways, slabs, and exterior improvements." },
+  { id: "siding", label: "Siding", copy: "Siding repairs, replacements, weather protection, and curb appeal upgrades." },
+  { id: "carpentry", label: "Carpentry", copy: "Custom carpentry repairs, trim details, framing, and finish improvements." },
+  { id: "insurance-claims", label: "Insurance Claims", copy: "Storm-related repairs and organized project documentation support." },
+  { id: "handyman", label: "Handyman", copy: "Reliable repairs, punch lists, carpentry, doors, windows, and general fixes." },
+];
+
+const galleryProjects = galleryCategories.flatMap((category, categoryIndex) =>
+  Array.from({ length: 10 }, (_, itemIndex) => {
+    const imagePair = galleryImagePairs[(categoryIndex + itemIndex) % galleryImagePairs.length];
+
+    return {
+      ...imagePair,
+      category: category.id,
+      title: `${category.label} Project ${String(itemIndex + 1).padStart(2, "0")}`,
+      description: category.copy,
+    };
+  })
+);
 
 function setHeaderState() {
   header.classList.toggle("scrolled", window.scrollY > 20);
@@ -55,6 +127,47 @@ function getCurrentNavTarget() {
   }
 
   return "";
+}
+
+function getGalleryCard(project) {
+  return `
+    <article class="ba-card" data-gallery-card="${project.category}">
+      <div class="ba-slider">
+        <img class="ba-img ba-after" src="${project.after}" alt="${project.afterAlt}" />
+        <div class="ba-before-wrap">
+          <img class="ba-img ba-before" src="${project.before}" alt="${project.beforeAlt}" />
+        </div>
+        <span class="ba-label ba-label-left">Before</span>
+        <span class="ba-label ba-label-right">Completed</span>
+        <img class="ba-watermark" src="img/logo-the-rodriguez-co.png" alt="" aria-hidden="true" />
+        <div class="ba-handle"><div class="ba-knob">&harr;</div></div>
+      </div>
+      <div class="ba-content">
+        <h2>${project.title}</h2>
+        <p>${project.description}</p>
+      </div>
+    </article>
+  `;
+}
+
+function renderGallery(category = "all") {
+  if (!galleryGrid) {
+    return;
+  }
+
+  const gallerySection = galleryGrid.closest("[data-gallery-section]");
+  const visibleProjects =
+    category === "all" ? galleryProjects : galleryProjects.filter((project) => project.category === category);
+
+  galleryGrid.innerHTML = visibleProjects.map(getGalleryCard).join("");
+  gallerySection?.classList.add("in-view");
+  initBeforeAfterSliders(galleryGrid);
+}
+
+function setActiveGalleryFilter(category) {
+  galleryFilters.forEach((button) => {
+    button.classList.toggle("active", button.dataset.galleryFilter === category);
+  });
 }
 
 const observer = new IntersectionObserver(
@@ -103,12 +216,81 @@ menuToggle.addEventListener("click", () => {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
+    const href = link.getAttribute("href") || "";
+    const url = new URL(href, window.location.href);
+
+    if (url.hash) {
+      setActiveLink(url.hash.slice(1));
+    }
+
     header.classList.remove("nav-open");
     megaItems.forEach((item) => item.classList.remove("mega-open"));
     megaItems.forEach((item) => item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false"));
     menuToggle.setAttribute("aria-expanded", "false");
   });
 });
+
+window.addEventListener("hashchange", () => {
+  setActiveLink(getCurrentNavTarget());
+});
+
+if (heroCarousel) {
+  const heroSlides = [...heroCarousel.querySelectorAll(":scope > img")];
+  const heroDots = [...heroCarousel.querySelectorAll(".hero-carousel-dots span")];
+  const heroEyebrow = document.querySelector("[data-hero-eyebrow]");
+  const heroTitle = document.querySelector("[data-hero-title]");
+  const heroCopy = document.querySelector("[data-hero-copy]");
+  const heroMessages = [
+    {
+      eyebrow: "Houston & Pearland Renovation Experts",
+      title: "Built Right. Repaired Right.",
+      copy: "Roofing to full remodels — done right the first time.",
+    },
+    {
+      eyebrow: "Kitchen & Bath Remodeling",
+      title: "Clean Finishes. Clear Communication.",
+      copy: "Functional remodels built around your home, timeline, and budget.",
+    },
+    {
+      eyebrow: "Roofing, Repairs & Exterior Work",
+      title: "Reliable Help For Every Property.",
+      copy: "From storm support to exterior upgrades, we keep the scope clear.",
+    },
+    {
+      eyebrow: "Local, Licensed & Insured",
+      title: "Quality Work You Can Trust.",
+      copy: "Serving Pearland, Houston, and surrounding communities with dependable workmanship.",
+    },
+  ];
+  let activeHeroSlide = 0;
+
+  if (heroSlides.length > 1) {
+    const updateHeroText = (index) => {
+      const message = heroMessages[index] || heroMessages[0];
+
+      if (heroEyebrow) {
+        heroEyebrow.textContent = message.eyebrow;
+      }
+
+      if (heroTitle) {
+        heroTitle.textContent = message.title;
+      }
+
+      if (heroCopy) {
+        heroCopy.textContent = message.copy;
+      }
+    };
+
+    setInterval(() => {
+      heroSlides[activeHeroSlide].classList.remove("active");
+      heroDots[activeHeroSlide]?.classList.remove("active");
+      activeHeroSlide = (activeHeroSlide + 1) % heroSlides.length;
+      heroSlides[activeHeroSlide].classList.add("active");
+      heroDots[activeHeroSlide]?.classList.add("active");
+      updateHeroText(activeHeroSlide);
+    }, 4200);
+  }
+}
 
 megaItems.forEach((item) => {
   const toggle = item.querySelector(".mega-toggle");
@@ -132,6 +314,13 @@ megaItems.forEach((item) => {
 });
 
 document.addEventListener("click", (event) => {
+  customSelects.forEach((select) => {
+    if (!select.contains(event.target)) {
+      select.classList.remove("open");
+      select.querySelector(".custom-select-trigger")?.setAttribute("aria-expanded", "false");
+    }
+  });
+
   if (!header.classList.contains("nav-open")) {
     return;
   }
@@ -142,6 +331,39 @@ document.addEventListener("click", (event) => {
     megaItems.forEach((item) => item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false"));
     menuToggle.setAttribute("aria-expanded", "false");
   }
+});
+
+customSelects.forEach((select) => {
+  const input = select.querySelector('input[type="hidden"]');
+  const trigger = select.querySelector(".custom-select-trigger");
+  const triggerText = trigger?.querySelector("span");
+  const options = [...select.querySelectorAll(".custom-select-menu button")];
+
+  trigger?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const isOpen = select.classList.toggle("open");
+    trigger.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  options.forEach((option) => {
+    option.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const value = option.dataset.value || option.textContent.trim();
+
+      if (input) {
+        input.value = value;
+      }
+
+      if (triggerText) {
+        triggerText.textContent = value;
+      }
+
+      options.forEach((button) => button.classList.remove("active"));
+      option.classList.add("active");
+      select.classList.remove("open");
+      trigger?.setAttribute("aria-expanded", "false");
+    });
+  });
 });
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
@@ -186,127 +408,64 @@ faqItems.forEach((item) => {
   });
 });
 
-beforeAfterSliders.forEach((slider) => {
-  const beforeWrap = slider.querySelector(".ba-before-wrap");
-  const handle = slider.querySelector(".ba-handle");
+function initBeforeAfterSliders(root = document) {
+  const beforeAfterSliders = [...root.querySelectorAll(".ba-slider")];
 
-  function syncBeforeWidth() {
-    slider.style.setProperty("--ba-slider-width", `${slider.getBoundingClientRect().width}px`);
-  }
+  beforeAfterSliders.forEach((slider) => {
+    const beforeWrap = slider.querySelector(".ba-before-wrap");
+    const handle = slider.querySelector(".ba-handle");
 
-  function move(clientX) {
+    function syncBeforeWidth() {
+      slider.style.setProperty("--ba-slider-width", `${slider.getBoundingClientRect().width}px`);
+    }
+
+    function move(clientX) {
+      syncBeforeWidth();
+      const rect = slider.getBoundingClientRect();
+      const position = Math.max(6, Math.min(94, ((clientX - rect.left) / rect.width) * 100));
+
+      beforeWrap.style.width = `${position}%`;
+      handle.style.left = `${position}%`;
+    }
+
     syncBeforeWidth();
-    const rect = slider.getBoundingClientRect();
-    const position = Math.max(6, Math.min(94, ((clientX - rect.left) / rect.width) * 100));
+    window.addEventListener("resize", syncBeforeWidth);
+    slider.addEventListener("mousemove", (event) => move(event.clientX));
+    slider.addEventListener("click", (event) => move(event.clientX));
+    slider.addEventListener(
+      "touchmove",
+      (event) => {
+        if (event.touches[0]) {
+          move(event.touches[0].clientX);
+        }
+      },
+      { passive: true }
+    );
+  });
+}
 
-    beforeWrap.style.width = `${position}%`;
-    handle.style.left = `${position}%`;
-  }
+galleryFilters.forEach((button) => {
+  button.addEventListener("click", () => {
+    const category = button.dataset.galleryFilter || "all";
 
-  syncBeforeWidth();
-  window.addEventListener("resize", syncBeforeWidth);
-  slider.addEventListener("mousemove", (event) => move(event.clientX));
-  slider.addEventListener("click", (event) => move(event.clientX));
-  slider.addEventListener(
-    "touchmove",
-    (event) => {
-      if (event.touches[0]) {
-        move(event.touches[0].clientX);
-      }
-    },
-    { passive: true }
-  );
+    setActiveGalleryFilter(category);
+    renderGallery(category);
+  });
 });
 
+setActiveGalleryFilter("all");
+renderGallery("all");
+
+if (!galleryGrid) {
+  initBeforeAfterSliders();
+}
+
 if (bookingFlow) {
-  const bookingState = {
-    day: "9",
-    time: "9:00 AM",
-    service: "Roofing",
-  };
-  const stepButtons = [...bookingFlow.querySelectorAll("[data-booking-step-button]")];
-  const panels = [...bookingFlow.querySelectorAll("[data-booking-panel]")];
-  const dayButtons = [...bookingFlow.querySelectorAll("[data-booking-day]")];
-  const timeButtons = [...bookingFlow.querySelectorAll("[data-booking-time]")];
-  const serviceSelect = bookingFlow.querySelector("[data-booking-service]");
   const fileInput = bookingFlow.querySelector("[data-booking-file]");
   const fileName = bookingFlow.querySelector("[data-booking-file-name]");
-  const selectedText = bookingFlow.querySelector("[data-booking-selected]");
-  const summaryService = bookingFlow.querySelector("[data-booking-summary-service]");
-  const summaryDate = bookingFlow.querySelector("[data-booking-summary-date]");
-  const successBox = bookingFlow.querySelector("[data-booking-success]");
-
-  function getAppointmentText() {
-    return `Aug ${bookingState.day}, 2026 - ${bookingState.time}`;
-  }
-
-  function updateBookingSummary() {
-    bookingState.service = serviceSelect?.value || bookingState.service;
-    selectedText.textContent = getAppointmentText();
-    summaryService.textContent = bookingState.service;
-    summaryDate.textContent = getAppointmentText();
-  }
-
-  function showBookingStep(step) {
-    panels.forEach((panel) => {
-      panel.classList.toggle("active", panel.dataset.bookingPanel === String(step));
-    });
-
-    stepButtons.forEach((button) => {
-      const buttonStep = Number(button.dataset.bookingStepButton);
-      button.classList.toggle("active", buttonStep === step);
-      button.classList.toggle("done", buttonStep < step);
-    });
-
-    bookingFlow.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  dayButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      dayButtons.forEach((dayButton) => dayButton.classList.remove("selected"));
-      button.classList.add("selected");
-      bookingState.day = button.dataset.bookingDay;
-      updateBookingSummary();
-    });
-  });
-
-  timeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      timeButtons.forEach((timeButton) => timeButton.classList.remove("selected"));
-      button.classList.add("selected");
-      bookingState.time = button.dataset.bookingTime;
-      updateBookingSummary();
-    });
-  });
-
-  serviceSelect?.addEventListener("change", updateBookingSummary);
 
   fileInput?.addEventListener("change", () => {
     const fileCount = fileInput.files.length;
     fileName.textContent = fileCount === 0 ? "No files selected" : `${fileCount} file${fileCount === 1 ? "" : "s"} selected`;
   });
-
-  bookingFlow.querySelectorAll("[data-booking-next]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const currentPanel = bookingFlow.querySelector(".booking-panel.active");
-      showBookingStep(Math.min(Number(currentPanel.dataset.bookingPanel) + 1, 3));
-    });
-  });
-
-  bookingFlow.querySelectorAll("[data-booking-prev]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const currentPanel = bookingFlow.querySelector(".booking-panel.active");
-      showBookingStep(Math.max(Number(currentPanel.dataset.bookingPanel) - 1, 1));
-    });
-  });
-
-  stepButtons.forEach((button) => {
-    button.addEventListener("click", () => showBookingStep(Number(button.dataset.bookingStepButton)));
-  });
-
-  bookingFlow.querySelector("[data-booking-confirm]")?.addEventListener("click", () => {
-    successBox.classList.add("active");
-  });
-
-  updateBookingSummary();
 }
