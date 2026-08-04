@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Online | The Rodriguez Co</title>
+    <title>Free Estimate | The Rodriguez Co</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,7 +27,9 @@
         <span></span>
         <span></span>
       </button>
-      <a class="mobile-header-cta" href="book-online.html">Book Online</a>      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a class="mobile-header-cta" href="book-online.html">Book Online</a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="about.html">About Us</a>
 
@@ -66,40 +68,48 @@
           <i class="bi bi-telephone-fill" aria-hidden="true"></i>
           Emergency
         </a>
-        <a class="nav-link nav-cta active" href="book-online.html">Book Online</a>
+        <a class="nav-link nav-cta" href="book-online.html">Book Online</a>
       </nav>
     </header>
 
     <main>
-      <section class="booking-hero section-target" id="book-online">
+      <section class="booking-hero section-target" id="free-estimate">
         <div>
-          <p class="eyebrow">Free Estimate Available</p>
-          <h1>Book Online</h1>
+          <p class="eyebrow">Free Estimate</p>
+          <h1>Get A Free Estimate</h1>
           <span class="service-title-line" aria-hidden="true"></span>
           <p>
-            Tell us what you need repaired, remodeled, or inspected. The
-            Rodriguez Co will review your request and follow up with the next
-            step.
+            Tell us whatâ€™s going on and weâ€™ll follow up to schedule a visit â€”
+            no pressure, no obligation.
           </p>
         </div>
       </section>
 
-      <section class="booking-flow single-booking-flow" aria-label="Book online request form">
+      <section class="booking-flow single-booking-flow" aria-label="Free estimate request form">
         <form class="booking-box booking-request-card" action="#" method="post">
           <div class="booking-request-heading">
-            <p class="eyebrow dark">Request An Estimate</p>
-            <h2>Tell Us About Your Project</h2>
+            <p class="eyebrow dark">Free Estimate Request</p>
+            <h2>Tell Us About Your Problem</h2>
             <p>
-              Submit the details in one step. The Rodriguez Co will review your
-              request and follow up to confirm availability and next steps.
+              Share the details below and our team will reach out to discuss next
+              steps.
             </p>
           </div>
 
           <div class="booking-form-grid booking-single-grid">
+            <label class="full">
+              <span>Whatâ€™s the problem?</span>
+              <textarea
+                name="problem"
+                rows="5"
+                placeholder="Describe whatâ€™s going on â€” leaking roof, broken fixture, remodel idea, etc."
+              ></textarea>
+            </label>
+
             <label>
-              <span>Service Needed</span>
+              <span>Service Category</span>
               <div class="custom-select" data-custom-select>
-                <input type="hidden" name="service" value="" data-booking-service />
+                <input type="hidden" name="service" value="" />
                 <button class="custom-select-trigger" type="button" aria-expanded="false">
                   <span>Select a service</span>
                   <i class="bi bi-chevron-down" aria-hidden="true"></i>
@@ -124,13 +134,21 @@
             </label>
 
             <label>
-              <span>Preferred Date</span>
-              <input type="date" name="date" />
+              <span>Insurance Claim?</span>
+              <div class="form-toggle" data-toggle-group>
+                <input type="hidden" name="insurance-claim" value="" />
+                <button class="toggle-option" type="button" data-value="Yes">Yes</button>
+                <button class="toggle-option" type="button" data-value="No">No</button>
+              </div>
             </label>
 
-            <label>
-              <span>Preferred Time</span>
-              <input type="time" name="time" />
+            <label class="full">
+              <span>Would you like to schedule a visit?</span>
+              <div class="form-toggle" data-toggle-group>
+                <input type="hidden" name="schedule-visit" value="" />
+                <button class="toggle-option" type="button" data-value="Yes, schedule a visit">Yes, schedule a visit</button>
+                <button class="toggle-option" type="button" data-value="No, just send me info first">No, just send me info first</button>
+              </div>
             </label>
 
             <label>
@@ -158,11 +176,6 @@
               <input type="text" name="address" placeholder="Pearland, Houston, or surrounding area" autocomplete="street-address" />
             </label>
 
-            <label class="full">
-              <span>Project Notes</span>
-              <textarea name="notes" rows="5" placeholder="Tell us about the repair, remodel, roof issue, or project scope."></textarea>
-            </label>
-
             <label class="full booking-file-label">
               <span>Project Photos</span>
               <input type="file" name="photos" accept="image/*" multiple data-booking-file />
@@ -171,7 +184,7 @@
             </label>
           </div>
 
-          <button class="booking-action booking-submit" type="submit">Submit Request</button>
+          <button class="booking-action booking-submit" type="submit">Request Free Estimate</button>
           <p class="booking-secure-note"><i class="bi bi-shield-check"></i> This demo sends a request only.</p>
         </form>
       </section>

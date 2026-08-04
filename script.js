@@ -1,4 +1,4 @@
-const header = document.querySelector("[data-header]");
+﻿const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = [...document.querySelectorAll(".section-target")];
@@ -93,8 +93,10 @@ function setHeaderState() {
 function setActiveLink(id) {
   navLinks.forEach((link) => {
     const href = link.getAttribute("href") || "";
+    const explicitTarget = link.dataset.navTarget;
     const url = new URL(href, window.location.href);
-    const linkTarget = url.hash ? url.hash.slice(1) : url.pathname.split("/").pop()?.replace(".html", "") || "home";
+    const linkTarget =
+      explicitTarget || (url.hash ? url.hash.slice(1) : url.pathname.split("/").pop()?.replace(".html", "") || "home");
     link.classList.toggle("active", linkTarget === id);
   });
 }
@@ -126,6 +128,10 @@ function getCurrentNavTarget() {
     return "book-online";
   }
 
+  if (page === "emergency.html") {
+    return "emergency";
+  }
+
   return "";
 }
 
@@ -133,9 +139,9 @@ function getGalleryCard(project) {
   return `
     <article class="ba-card" data-gallery-card="${project.category}">
       <div class="ba-slider">
-        <img class="ba-img ba-after" src="${project.after}" alt="${project.afterAlt}" />
+        <img class="ba-img ba-after" src="${project.after}" alt="${project.afterAlt}" draggable="false" />
         <div class="ba-before-wrap">
-          <img class="ba-img ba-before" src="${project.before}" alt="${project.beforeAlt}" />
+          <img class="ba-img ba-before" src="${project.before}" alt="${project.beforeAlt}" draggable="false" />
         </div>
         <span class="ba-label ba-label-left">Before</span>
         <span class="ba-label ba-label-right">Completed</span>
@@ -170,23 +176,29 @@ function setActiveGalleryFilter(category) {
   });
 }
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    const visibleEntry = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+function updateActiveSectionOnScroll() {
+  const page = window.location.pathname.split("/").pop() || "index.html";
 
-    if (visibleEntry) {
-      setActiveLink(visibleEntry.target.id);
-    }
-  },
-  {
-    rootMargin: "-35% 0px -50% 0px",
-    threshold: [0.15, 0.35, 0.65],
+  if (page !== "index.html" || !sections.length) {
+    return;
   }
-);
 
-sections.forEach((section) => observer.observe(section));
+  const headerOffset = header?.offsetHeight || 0;
+  const viewportFocus = headerOffset + window.innerHeight * 0.32;
+  let currentSectionId = sections[0].id;
+
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top;
+    const sectionBottom = rect.bottom;
+
+    if (sectionTop <= viewportFocus && sectionBottom > viewportFocus) {
+      currentSectionId = section.id;
+    }
+  });
+
+  setActiveLink(currentSectionId);
+}
 
 if ("IntersectionObserver" in window) {
   const animationObserver = new IntersectionObserver(
@@ -366,9 +378,38 @@ customSelects.forEach((select) => {
   });
 });
 
-window.addEventListener("scroll", setHeaderState, { passive: true });
+document.querySelectorAll("[data-toggle-group]").forEach((group) => {
+  const input = group.querySelector('input[type="hidden"]');
+  const options = [...group.querySelectorAll(".toggle-option")];
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      const value = option.dataset.value || option.textContent.trim();
+
+      if (input) {
+        input.value = value;
+      }
+
+      options.forEach((button) => button.classList.remove("active"));
+      option.classList.add("active");
+    });
+  });
+});
+
+window.addEventListener(
+  "scroll",
+  () => {
+    setHeaderState();
+    updateActiveSectionOnScroll();
+  },
+  { passive: true }
+);
+
+window.addEventListener("resize", updateActiveSectionOnScroll, { passive: true });
+
 setHeaderState();
 setActiveLink(getCurrentNavTarget());
+updateActiveSectionOnScroll();
 
 if (carousel) {
   const track = carousel.querySelector("[data-carousel-track]");
@@ -390,21 +431,26 @@ if (carousel) {
   nextButton.addEventListener("click", () => scrollStories(1));
 }
 
-faqItems.forEach((item) => {
-  const button = item.querySelector(".faq-question");
+function toggleFaqItem(button) {
+  const item = button.closest(".faq-item");
+  const isOpen = item?.classList.contains("open");
+  faqItems.forEach((faqItem) => {
+    faqItem.classList.remove("open");
+    faqItem.querySelector(".faq-question")?.setAttribute("aria-expanded", "false");
+  });
 
-  button.addEventListener("click", () => {
-    const isOpen = item.classList.contains("open");
+  if (!isOpen && item) {
+    item.classList.add("open");
+    button.setAttribute("aria-expanded", "true");
+  }
+}
 
-    faqItems.forEach((faqItem) => {
-      faqItem.classList.remove("open");
-      faqItem.querySelector(".faq-question").setAttribute("aria-expanded", "false");
-    });
-
-    if (!isOpen) {
-      item.classList.add("open");
-      button.setAttribute("aria-expanded", "true");
-    }
+faqItems.forEach((faqItem) => {
+  const button = faqItem.querySelector(".faq-question");
+  button?.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleFaqItem(button);
   });
 });
 
@@ -412,8 +458,13 @@ function initBeforeAfterSliders(root = document) {
   const beforeAfterSliders = [...root.querySelectorAll(".ba-slider")];
 
   beforeAfterSliders.forEach((slider) => {
+    if (slider.dataset.baReady === "true") {
+      return;
+    }
+
     const beforeWrap = slider.querySelector(".ba-before-wrap");
     const handle = slider.querySelector(".ba-handle");
+    let isDragging = false;
 
     function syncBeforeWidth() {
       slider.style.setProperty("--ba-slider-width", `${slider.getBoundingClientRect().width}px`);
@@ -428,24 +479,46 @@ function initBeforeAfterSliders(root = document) {
       handle.style.left = `${position}%`;
     }
 
+    function startDrag(event) {
+      isDragging = true;
+      slider.classList.add("is-dragging");
+      move(event.clientX);
+      slider.setPointerCapture?.(event.pointerId);
+    }
+
+    function drag(event) {
+      if (!isDragging) {
+        return;
+      }
+
+      move(event.clientX);
+    }
+
+    function endDrag(event) {
+      if (!isDragging) {
+        return;
+      }
+
+      isDragging = false;
+      slider.classList.remove("is-dragging");
+      slider.releasePointerCapture?.(event.pointerId);
+    }
+
     syncBeforeWidth();
+    slider.dataset.baReady = "true";
     window.addEventListener("resize", syncBeforeWidth);
-    slider.addEventListener("mousemove", (event) => move(event.clientX));
+    slider.addEventListener("pointerdown", startDrag);
+    slider.addEventListener("pointermove", drag);
+    slider.addEventListener("pointerup", endDrag);
+    slider.addEventListener("pointercancel", endDrag);
+    slider.addEventListener("pointerleave", endDrag);
     slider.addEventListener("click", (event) => move(event.clientX));
-    slider.addEventListener(
-      "touchmove",
-      (event) => {
-        if (event.touches[0]) {
-          move(event.touches[0].clientX);
-        }
-      },
-      { passive: true }
-    );
   });
 }
 
 galleryFilters.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
     const category = button.dataset.galleryFilter || "all";
 
     setActiveGalleryFilter(category);
@@ -460,12 +533,110 @@ if (!galleryGrid) {
   initBeforeAfterSliders();
 }
 
-if (bookingFlow) {
-  const fileInput = bookingFlow.querySelector("[data-booking-file]");
-  const fileName = bookingFlow.querySelector("[data-booking-file-name]");
+document.querySelectorAll("[data-booking-file]").forEach((fileInput) => {
+  const fileName = fileInput.closest("label")?.querySelector("[data-booking-file-name]");
 
-  fileInput?.addEventListener("change", () => {
+  fileInput.addEventListener("change", () => {
+    if (!fileName) {
+      return;
+    }
+
     const fileCount = fileInput.files.length;
     fileName.textContent = fileCount === 0 ? "No files selected" : `${fileCount} file${fileCount === 1 ? "" : "s"} selected`;
   });
+});
+
+function initDemoChatWidget() {
+  if (!document.body || document.querySelector("[data-demo-chat]")) {
+    return;
+  }
+
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div class="demo-chat-widget" data-demo-chat>
+        <div class="demo-chat-panel" aria-hidden="true">
+          <div class="demo-chat-header">
+            <div class="demo-chat-brand">
+              <span class="demo-chat-logo">
+                <img src="img/logo-the-rodriguez-co.png" alt="The Rodriguez Co" />
+              </span>
+              <div>
+                <strong>TRC Demo Chat</strong>
+                <span>We’ll point visitors to the right form.</span>
+              </div>
+            </div>
+            <button class="demo-chat-close" type="button" aria-label="Close message widget">&times;</button>
+          </div>
+          <div class="demo-chat-body">
+            <div class="demo-chat-thread" aria-label="Demo chat preview">
+              <div class="demo-chat-bubble demo-chat-bubble-agent">
+                Hi. This is a demo chat for The Rodriguez Co.
+              </div>
+              <div class="demo-chat-bubble demo-chat-bubble-agent">
+                Need an estimate, want to book a visit, or have an emergency?
+              </div>
+              <div class="demo-chat-bubble demo-chat-bubble-user">
+                I need help with my project.
+              </div>
+              <div class="demo-chat-bubble demo-chat-bubble-agent">
+                Use the links below and we’ll route you to the right form:
+                <span class="demo-chat-inline-links">
+                  <a href="free-estimate.html">Free Estimate</a>
+                  <a href="book-online.html">Book Online</a>
+                  <a href="emergency.html">Emergency</a>
+                </span>
+              </div>
+            </div>
+            <div class="demo-chat-inputbar" aria-hidden="true">
+              <span>Type your message...</span>
+              <div class="demo-chat-inputicons">
+                <i class="bi bi-emoji-smile" aria-hidden="true"></i>
+                <i class="bi bi-paperclip" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="demo-chat-meta">
+              <span>Demo messaging widget</span>
+              <a href="mailto:admin@therodriguezco.com">Email us</a>
+            </div>
+          </div>
+        </div>
+        <button class="demo-chat-toggle" type="button" aria-expanded="false" aria-label="Open message widget">
+          <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>
+          <span>Message Us</span>
+        </button>
+      </div>
+    `
+  );
+
+  const widget = document.querySelector("[data-demo-chat]");
+  const toggle = widget?.querySelector(".demo-chat-toggle");
+  const panel = widget?.querySelector(".demo-chat-panel");
+  const closeButton = widget?.querySelector(".demo-chat-close");
+
+  if (!widget || !toggle || !panel || !closeButton) {
+    return;
+  }
+
+  function setWidgetState(isOpen) {
+    widget.classList.toggle("open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    panel.setAttribute("aria-hidden", String(!isOpen));
+  }
+
+  toggle.addEventListener("click", () => {
+    setWidgetState(!widget.classList.contains("open"));
+  });
+
+  closeButton.addEventListener("click", () => {
+    setWidgetState(false);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!widget.contains(event.target)) {
+      setWidgetState(false);
+    }
+  });
 }
+
+initDemoChatWidget();
