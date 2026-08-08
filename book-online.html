@@ -27,7 +27,8 @@
         <span></span>
         <span></span>
       </button>
-      <a class="mobile-header-cta" href="book-online.html">Book Online</a>      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a class="mobile-header-cta" href="book-online.html">Book Online</a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="about.html">About Us</a>
 
@@ -38,31 +39,28 @@
           </button>
 
           <div class="mega-menu" aria-label="Services menu">
-            <a href="handyman.html"><span>Handyman</span></a>
-            <a href="handyman.html"><span>Plumbing</span></a>
-            <a href="handyman.html"><span>Electrical</span></a>
-            <a href="handyman.html"><span>Painting</span></a>
-            <a href="handyman.html"><span>Flooring</span></a>
-            <a href="exterior-work.html"><span>Fencing</span></a>
             <a href="roofing.html"><span>Roofing</span></a>
+            <a href="plumbing.html"><span>Plumbing</span></a>
+            <a href="electrical.html"><span>Electrical</span></a>
+            <a href="painting.html"><span>Painting</span></a>
+            <a href="flooring.html"><span>Flooring</span></a>
+            <a href="fencing.html"><span>Fencing</span></a>
             <a href="kitchen-bath.html"><span>Kitchen &amp; Bathroom Remodels</span></a>
-            <a href="exterior-work.html"><span>Deck &amp; Patio</span></a>
-            <a href="exterior-work.html"><span>Doors &amp; Windows</span></a>
-            <a href="exterior-work.html"><span>Concrete</span></a>
-            <a href="exterior-work.html"><span>Siding</span></a>
-            <a href="handyman.html"><span>Carpentry</span></a>
-            <a href="roofing.html"><span>Insurance Claims</span></a>
+            <a href="deck-patio.html"><span>Deck &amp; Patio</span></a>
+            <a href="doors-windows.html"><span>Doors &amp; Windows</span></a>
+            <a href="concrete.html"><span>Concrete</span></a>
+            <a href="siding.html"><span>Siding</span></a>
+            <a href="carpentry.html"><span>Carpentry</span></a>
+            <a href="insurance-claims.html"><span>Insurance Claims</span></a>
+            <a href="handyman.html"><span>Handyman</span></a>
           </div>
         </div>
 
         <a class="nav-link" href="gallery.html">Gallery</a>
         <a class="nav-link" href="index.html#faq">FAQ</a>
-                <div class="header-socials" aria-label="Social media links">
-          <a class="social-icon instagram-social" href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-          <a class="social-icon facebook-social" href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-          <a class="social-icon linkedin-social" href="#" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-          <a class="social-icon tiktok-social" href="#" aria-label="TikTok"><i class="bi bi-tiktok" aria-hidden="true"></i></a>
-        </div>        <a class="nav-link nav-emergency" href="emergency.html">
+        <a class="nav-link" href="index.html#social" data-nav-target="social">Social Media</a>
+        <a class="nav-link nav-cta nav-free-estimate" href="free-estimate.html">Get A Free Estimate</a>
+        <a class="nav-link nav-emergency" href="emergency.html">
           <i class="bi bi-telephone-fill" aria-hidden="true"></i>
           Emergency
         </a>
@@ -96,6 +94,26 @@
           </div>
 
           <div class="booking-form-grid booking-single-grid">
+            <label class="full">
+              <span>Full Name</span>
+              <input type="text" name="full-name" placeholder="Your full name" autocomplete="name" />
+            </label>
+
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@email.com" autocomplete="email" />
+            </label>
+
+            <label class="full">
+              <span>Property Address</span>
+              <input type="text" name="address" placeholder="Pearland, Houston, or surrounding area" autocomplete="street-address" />
+            </label>
+
             <label>
               <span>Service Needed</span>
               <div class="custom-select" data-custom-select>
@@ -133,31 +151,6 @@
               <input type="time" name="time" />
             </label>
 
-            <label>
-              <span>First Name</span>
-              <input type="text" name="first-name" placeholder="First name" autocomplete="given-name" />
-            </label>
-
-            <label>
-              <span>Last Name</span>
-              <input type="text" name="last-name" placeholder="Last name" autocomplete="family-name" />
-            </label>
-
-            <label>
-              <span>Phone</span>
-              <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" />
-            </label>
-
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" placeholder="you@email.com" autocomplete="email" />
-            </label>
-
-            <label class="full">
-              <span>Property Address</span>
-              <input type="text" name="address" placeholder="Pearland, Houston, or surrounding area" autocomplete="street-address" />
-            </label>
-
             <label class="full">
               <span>Project Notes</span>
               <textarea name="notes" rows="5" placeholder="Tell us about the repair, remodel, roof issue, or project scope."></textarea>
@@ -171,7 +164,10 @@
             </label>
           </div>
 
-          <button class="booking-action booking-submit" type="submit">Submit Request</button>
+          <div class="booking-buttons booking-request-actions">
+            <button class="booking-action booking-submit" type="submit">Submit Request</button>
+            <a class="quote-cta-button booking-call-now" href="tel:+18327745582">Call Now</a>
+          </div>
           <p class="booking-secure-note"><i class="bi bi-shield-check"></i> This demo sends a request only.</p>
         </form>
       </section>

@@ -1,4 +1,4 @@
-﻿const header = document.querySelector("[data-header]");
+const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const sections = [...document.querySelectorAll(".section-target")];
@@ -16,6 +16,11 @@ const galleryGrid = document.querySelector("[data-gallery-grid]");
 const galleryFilters = [...document.querySelectorAll("[data-gallery-filter]")];
 const bookingFlow = document.querySelector(".booking-flow");
 const customSelects = [...document.querySelectorAll("[data-custom-select]")];
+
+function closeAllMegaMenus() {
+  megaItems.forEach((item) => item.classList.remove("mega-open"));
+  megaItems.forEach((item) => item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false"));
+}
 
 const galleryImagePairs = [
   {
@@ -120,7 +125,7 @@ function getCurrentNavTarget() {
     return "about";
   }
 
-  if (["roofing.html", "kitchen-bath.html", "handyman.html", "exterior-work.html"].includes(page)) {
+  if (["roofing.html", "plumbing.html", "electrical.html", "painting.html", "flooring.html", "fencing.html", "kitchen-bath.html", "deck-patio.html", "doors-windows.html", "concrete.html", "siding.html", "carpentry.html", "insurance-claims.html", "handyman.html", "exterior-work.html"].includes(page)) {
     return "services";
   }
 
@@ -145,7 +150,6 @@ function getGalleryCard(project) {
         </div>
         <span class="ba-label ba-label-left">Before</span>
         <span class="ba-label ba-label-right">Completed</span>
-        <img class="ba-watermark" src="img/logo-the-rodriguez-co.png" alt="" aria-hidden="true" />
         <div class="ba-handle"><div class="ba-knob">&harr;</div></div>
       </div>
       <div class="ba-content">
@@ -184,15 +188,11 @@ function updateActiveSectionOnScroll() {
   }
 
   const headerOffset = header?.offsetHeight || 0;
-  const viewportFocus = headerOffset + window.innerHeight * 0.32;
+  const scrollMarker = window.scrollY + headerOffset + 120;
   let currentSectionId = sections[0].id;
 
   sections.forEach((section) => {
-    const rect = section.getBoundingClientRect();
-    const sectionTop = rect.top;
-    const sectionBottom = rect.bottom;
-
-    if (sectionTop <= viewportFocus && sectionBottom > viewportFocus) {
+    if (scrollMarker >= section.offsetTop) {
       currentSectionId = section.id;
     }
   });
@@ -236,8 +236,7 @@ navLinks.forEach((link) => {
     }
 
     header.classList.remove("nav-open");
-    megaItems.forEach((item) => item.classList.remove("mega-open"));
-    megaItems.forEach((item) => item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false"));
+    closeAllMegaMenus();
     menuToggle.setAttribute("aria-expanded", "false");
   });
 });
@@ -293,6 +292,8 @@ if (heroCarousel) {
       }
     };
 
+    updateHeroText(activeHeroSlide);
+
     setInterval(() => {
       heroSlides[activeHeroSlide].classList.remove("active");
       heroDots[activeHeroSlide]?.classList.remove("active");
@@ -306,20 +307,74 @@ if (heroCarousel) {
 
 megaItems.forEach((item) => {
   const toggle = item.querySelector(".mega-toggle");
+  const triggerLink = item.querySelector(".nav-link");
+  const megaMenu = item.querySelector(".mega-menu");
+  let closeTimer;
+
+  function setMegaState(isOpen) {
+    window.clearTimeout(closeTimer);
+    closeAllMegaMenus();
+
+    if (isOpen) {
+      item.classList.add("mega-open");
+    }
+
+    toggle?.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  function openMegaMenu() {
+    if (!mobileNavQuery.matches) {
+      setMegaState(true);
+    }
+  }
+
+  function queueMegaClose() {
+    if (mobileNavQuery.matches) {
+      return;
+    }
+
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(() => {
+      item.classList.remove("mega-open");
+      toggle?.setAttribute("aria-expanded", "false");
+    }, 40);
+  }
 
   toggle?.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    const isOpen = item.classList.toggle("mega-open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (!mobileNavQuery.matches) {
+      return;
+    }
+
+    const willOpen = !item.classList.contains("mega-open");
+    setMegaState(willOpen);
   });
+
+  triggerLink?.addEventListener("click", (event) => {
+    if (!mobileNavQuery.matches) {
+      event.preventDefault();
+      event.stopPropagation();
+      openMegaMenu();
+      return;
+    }
+
+    closeAllMegaMenus();
+  });
+
+  triggerLink?.addEventListener("mouseenter", openMegaMenu);
+  toggle?.addEventListener("mouseenter", openMegaMenu);
+  megaMenu?.addEventListener("mouseenter", openMegaMenu);
+
+  triggerLink?.addEventListener("mouseleave", queueMegaClose);
+  toggle?.addEventListener("mouseleave", queueMegaClose);
+  megaMenu?.addEventListener("mouseleave", queueMegaClose);
 
   item.querySelectorAll(".mega-menu a").forEach((link) => {
     link.addEventListener("click", () => {
       header.classList.remove("nav-open");
-      item.classList.remove("mega-open");
-      item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false");
+      closeAllMegaMenus();
       menuToggle.setAttribute("aria-expanded", "false");
     });
   });
@@ -333,14 +388,13 @@ document.addEventListener("click", (event) => {
     }
   });
 
-  if (!header.classList.contains("nav-open")) {
-    return;
+  if (!event.target.closest(".has-mega")) {
+    closeAllMegaMenus();
   }
 
-  if (!header.contains(event.target)) {
+  if (header.classList.contains("nav-open") && !header.contains(event.target)) {
     header.classList.remove("nav-open");
-    megaItems.forEach((item) => item.classList.remove("mega-open"));
-    megaItems.forEach((item) => item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false"));
+    closeAllMegaMenus();
     menuToggle.setAttribute("aria-expanded", "false");
   }
 });
@@ -464,7 +518,8 @@ function initBeforeAfterSliders(root = document) {
 
     const beforeWrap = slider.querySelector(".ba-before-wrap");
     const handle = slider.querySelector(".ba-handle");
-    let isDragging = false;
+    const knob = handle?.querySelector(".ba-knob");
+    let activePointerId = null;
 
     function syncBeforeWidth() {
       slider.style.setProperty("--ba-slider-width", `${slider.getBoundingClientRect().width}px`);
@@ -473,54 +528,71 @@ function initBeforeAfterSliders(root = document) {
     function move(clientX) {
       syncBeforeWidth();
       const rect = slider.getBoundingClientRect();
-      const position = Math.max(6, Math.min(94, ((clientX - rect.left) / rect.width) * 100));
+      const knobHalfWidth = (knob?.getBoundingClientRect().width || 48) / 2;
+      const minX = knobHalfWidth;
+      const maxX = Math.max(knobHalfWidth, rect.width - knobHalfWidth);
+      const relativeX = clientX - rect.left;
+      const clampedX = Math.min(maxX, Math.max(minX, relativeX));
+      const position = (clampedX / rect.width) * 100;
 
       beforeWrap.style.width = `${position}%`;
       handle.style.left = `${position}%`;
     }
 
     function startDrag(event) {
-      isDragging = true;
+      if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+      }
+
+      activePointerId = event.pointerId;
       slider.classList.add("is-dragging");
+      event.preventDefault();
       move(event.clientX);
       slider.setPointerCapture?.(event.pointerId);
     }
 
     function drag(event) {
-      if (!isDragging) {
+      if (activePointerId !== event.pointerId) {
         return;
       }
 
+      event.preventDefault();
       move(event.clientX);
     }
 
     function endDrag(event) {
-      if (!isDragging) {
+      if (activePointerId !== event.pointerId) {
         return;
       }
 
-      isDragging = false;
+      activePointerId = null;
       slider.classList.remove("is-dragging");
       slider.releasePointerCapture?.(event.pointerId);
     }
 
     syncBeforeWidth();
+    move(slider.getBoundingClientRect().left + slider.getBoundingClientRect().width / 2);
     slider.dataset.baReady = "true";
     window.addEventListener("resize", syncBeforeWidth);
-    slider.addEventListener("pointerdown", startDrag);
-    slider.addEventListener("pointermove", drag);
-    slider.addEventListener("pointerup", endDrag);
-    slider.addEventListener("pointercancel", endDrag);
-    slider.addEventListener("pointerleave", endDrag);
-    slider.addEventListener("click", (event) => move(event.clientX));
+    slider.addEventListener("dragstart", (event) => event.preventDefault());
+    handle?.addEventListener("pointerdown", startDrag);
+    window.addEventListener("pointermove", drag);
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
+    slider.addEventListener("lostpointercapture", () => {
+      activePointerId = null;
+      slider.classList.remove("is-dragging");
+    });
   });
 }
 
 galleryFilters.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
+    event.stopPropagation();
     const category = button.dataset.galleryFilter || "all";
 
+    closeAllMegaMenus();
     setActiveGalleryFilter(category);
     renderGallery(category);
   });
@@ -558,12 +630,9 @@ function initDemoChatWidget() {
         <div class="demo-chat-panel" aria-hidden="true">
           <div class="demo-chat-header">
             <div class="demo-chat-brand">
-              <span class="demo-chat-logo">
-                <img src="img/logo-the-rodriguez-co.png" alt="The Rodriguez Co" />
-              </span>
               <div>
                 <strong>TRC Demo Chat</strong>
-                <span>We’ll point visitors to the right form.</span>
+                <span>We'll point visitors to the right form.</span>
               </div>
             </div>
             <button class="demo-chat-close" type="button" aria-label="Close message widget">&times;</button>
@@ -580,7 +649,7 @@ function initDemoChatWidget() {
                 I need help with my project.
               </div>
               <div class="demo-chat-bubble demo-chat-bubble-agent">
-                Use the links below and we’ll route you to the right form:
+                Use the links below and we'll route you to the right form:
                 <span class="demo-chat-inline-links">
                   <a href="free-estimate.html">Free Estimate</a>
                   <a href="book-online.html">Book Online</a>

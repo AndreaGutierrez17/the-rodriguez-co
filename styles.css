@@ -93,7 +93,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(14px, 1.6vw, 28px);
+  gap: clamp(10px, 1.15vw, 20px);
   font-size: 0.94rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -165,9 +165,10 @@ img {
 }
 
 .nav-cta {
-  min-width: 132px;
+  min-width: 114px;
   justify-content: center;
-  padding: 0 22px;
+  padding: 0 14px;
+  font-size: 0.82rem;
   color: var(--black);
   background: var(--accent);
   border-radius: 6px;
@@ -186,9 +187,10 @@ img {
 }
 
 .nav-emergency {
-  min-width: 126px;
+  min-width: 112px;
   justify-content: center;
-  padding: 0 18px;
+  padding: 0 14px;
+  font-size: 0.82rem;
   color: var(--white);
   background: var(--navy);
   border-radius: 6px;
@@ -239,15 +241,18 @@ img {
   border-top: 4px solid var(--accent);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translate(-50%, 12px);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
 }
 
 .has-mega.mega-open .mega-menu {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: translate(-50%, 0);
+  transition-delay: 0s;
 }
 
 .mega-toggle {
@@ -344,7 +349,7 @@ img {
 
 .hero-content {
   max-width: 780px;
-  min-height: 470px;
+  min-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -364,11 +369,11 @@ img {
 }
 
 .hero h1 {
-  max-width: 820px;
-  min-height: 2.7em;
+  max-width: 980px;
+  min-height: 2.35em;
   margin: 0;
-  font-size: clamp(2.95rem, 5.5vw, 5.95rem);
-  line-height: 1.08;
+  font-size: clamp(2.55rem, 4.55vw, 4.95rem);
+  line-height: 1.02;
   font-weight: 800;
   letter-spacing: 0;
   text-shadow: 0 4px 18px rgba(0, 0, 0, 0.68), 0 1px 3px rgba(0, 0, 0, 0.55);
@@ -378,14 +383,15 @@ img {
   display: block;
   width: 118px;
   height: 6px;
-  margin-top: 24px;
+  margin-top: 14px;
+  margin-bottom: 0;
   background: var(--accent);
 }
 
 .hero-copy {
   max-width: 780px;
-  min-height: 2.6em;
-  margin: 28px 0 0;
+  min-height: 3.2em;
+  margin: 18px 0 0;
   font-size: clamp(1.02rem, 1.35vw, 1.34rem);
   line-height: 1.56;
   font-weight: 500;
@@ -393,50 +399,13 @@ img {
 }
 
 .hero-trust-line {
-  min-height: 1.45em;
+  min-height: 1.9em;
   margin: 12px 0 0;
   color: rgba(255, 255, 255, 0.9);
   font-size: clamp(0.92rem, 1.05vw, 1.05rem);
   line-height: 1.45;
   font-weight: 500;
   text-shadow: 0 3px 12px rgba(0, 0, 0, 0.62), 0 1px 2px rgba(0, 0, 0, 0.55);
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: auto;
-  padding-top: 28px;
-}
-
-.hero-action {
-  min-height: 58px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 26px;
-  color: var(--black);
-  background: var(--accent);
-  border-radius: 8px;
-  font-weight: 800;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.hero-action:hover {
-  background: #ffc052;
-  transform: translateY(-1px);
-}
-
-.hero-action.emergency-action {
-  color: var(--white);
-  background: var(--navy);
-  box-shadow: 0 14px 36px rgba(29, 58, 99, 0.28);
-}
-
-.hero-action.emergency-action:hover {
-  background: #254977;
 }
 
 .hero-bg-carousel {
@@ -452,27 +421,11 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
-  opacity: 0;
-  transform: scale(1.01);
-  transition: opacity 900ms ease, transform 4000ms ease;
-  will-change: opacity, transform;
-}
-
-.hero-bg-carousel img:nth-child(1) {
-  object-position: center 56%;
-}
-
-.hero-bg-carousel img:nth-child(2) {
   object-position: center 54%;
-}
-
-.hero-bg-carousel img:nth-child(3) {
-  object-position: center 52%;
-}
-
-.hero-bg-carousel img:nth-child(4) {
-  object-position: center 50%;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 900ms ease;
+  will-change: opacity;
 }
 
 .hero-bg-carousel img.active {
@@ -1085,7 +1038,7 @@ img {
   transition-delay: 380ms;
 }
 
-.more-services span {
+.more-services a {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
@@ -1095,13 +1048,21 @@ img {
   border-radius: 999px;
   background: rgba(29, 58, 99, 0.05);
   font-weight: 700;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.more-services a:hover {
+  color: var(--navy);
+  background: rgba(255, 167, 25, 0.16);
+  border-color: rgba(255, 167, 25, 0.46);
+  transform: translateY(-1px);
 }
 
 .quote-strip {
   position: relative;
   overflow: hidden;
   padding: clamp(130px, 10vw, 180px) clamp(24px, 5vw, 96px);
-  color: var(--black);
+  color: var(--white);
   background: var(--accent);
 }
 
@@ -1109,7 +1070,7 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255, 167, 25, 0.88), rgba(255, 167, 25, 0.92)),
+    linear-gradient(rgba(255, 167, 25, 0.6), rgba(255, 167, 25, 0.64)),
     url("img/hero.avif") center / cover;
 }
 
@@ -1123,7 +1084,7 @@ img {
 
 .quote-heading h2 {
   margin: 0;
-  color: var(--black);
+  color: var(--white);
   font-size: clamp(3rem, 5.3vw, 5.6rem);
   line-height: 1.04;
 }
@@ -1209,6 +1170,11 @@ img {
   line-height: 1.65;
 }
 
+.quote-strip .eyebrow.dark,
+.quote-strip .quote-cta p {
+  color: var(--white);
+}
+
 .quote-cta-actions {
   display: flex;
   justify-content: center;
@@ -1220,18 +1186,31 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 1 auto;
   min-height: 60px;
   padding: 0 30px;
   color: var(--white);
   background: var(--black);
   border-radius: 8px;
   font-weight: 800;
-  transition: background 160ms ease, transform 160ms ease;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .quote-cta-button:hover {
   background: var(--navy);
   transform: translateY(-1px);
+}
+
+.quote-cta-button.primary {
+  min-width: 248px;
+  color: var(--white);
+  background: var(--navy);
+  box-shadow: 0 14px 30px rgba(29, 58, 99, 0.28);
+}
+
+.quote-cta-button.primary:hover {
+  background: var(--black);
+  box-shadow: 0 16px 34px rgba(26, 26, 26, 0.26);
 }
 
 .quote-cta-button.secondary {
@@ -1440,6 +1419,8 @@ img {
   font-weight: 800;
   text-align: left;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
 .faq-question span {
@@ -1652,6 +1633,7 @@ img {
   position: relative;
   overflow: hidden;
   padding: 96px clamp(24px, 5vw, 96px) 118px;
+  scroll-margin-top: calc(var(--header-offset) + 12px);
   background: #f7f5ee;
   text-align: center;
 }
@@ -1940,12 +1922,10 @@ img {
 }
 
 .emergency-strip {
-  position: relative;
-  overflow: hidden;
   margin-top: 0;
   margin-bottom: 0;
-  padding: clamp(112px, 9vw, 158px) clamp(24px, 5vw, 96px);
-  background: var(--accent);
+  padding: 96px clamp(24px, 5vw, 96px) 108px;
+  background: #f7f5ee;
 }
 
 .emergency-page .site-footer {
@@ -1954,75 +1934,26 @@ img {
 }
 
 .emergency-inner {
-  position: relative;
-  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(340px, 0.8fr) minmax(420px, 1.2fr);
-  gap: clamp(28px, 4vw, 64px);
-  max-width: var(--content-width);
+  justify-items: center;
   margin: 0 auto;
 }
 
-.emergency-card,
 .emergency-form-card {
+  width: min(100%, 1080px);
+  padding: clamp(28px, 3.4vw, 52px);
   background: var(--white);
   border-radius: 12px;
-  box-shadow: 0 24px 60px rgba(26, 26, 26, 0.16);
+  border: 1px solid rgba(139, 146, 153, 0.22);
+  box-shadow: 0 18px 45px rgba(26, 26, 26, 0.08);
 }
 
-.emergency-card,
-.emergency-form-card {
-  padding: clamp(28px, 3.4vw, 52px);
-}
-
-.emergency-card h2,
 .emergency-form-card h2 {
   margin: 0 0 26px;
   color: var(--navy);
   font-size: clamp(2.2rem, 3.5vw, 4rem);
   line-height: 1.02;
   letter-spacing: -0.05em;
-}
-
-.emergency-list {
-  display: grid;
-}
-
-.emergency-row {
-  display: grid;
-  grid-template-columns: 52px 1fr;
-  gap: 16px;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(139, 146, 153, 0.25);
-}
-
-.emergency-row > span {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  color: var(--accent);
-  background: rgba(29, 58, 99, 0.08);
-  border-radius: 10px;
-  font-size: 1.25rem;
-}
-
-.emergency-row strong {
-  display: block;
-  color: var(--black);
-  font-size: 1.05rem;
-}
-
-.emergency-row p {
-  margin: 4px 0 0;
-  color: var(--black);
-  font-size: clamp(1rem, 1.25vw, 1.18rem);
-}
-
-.emergency-actions {
-  justify-content: flex-start;
-  margin-top: 30px;
 }
 
 .emergency-form-card {
@@ -2198,8 +2129,17 @@ img {
 }
 
 .emergency-submit {
-  width: 100%;
-  margin-top: 22px;
+  width: min(100%, 360px);
+  margin-top: 0;
+}
+
+.emergency-request-actions {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.emergency-call-now {
+  min-width: 180px;
 }
 
 .booking-flow {
@@ -2246,6 +2186,19 @@ img {
   margin-top: 24px;
 }
 
+.booking-request-actions {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.booking-request-actions .booking-submit {
+  margin-top: 0;
+}
+
+.booking-call-now {
+  min-width: 180px;
+}
+
 .booking-demo-note {
   max-width: var(--content-width);
   margin: 0 auto 24px;
@@ -2254,6 +2207,14 @@ img {
   background: rgba(255, 167, 25, 0.16);
   border-left: 5px solid var(--accent);
   font-weight: 700;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.more-services a:hover {
+  color: var(--navy);
+  background: rgba(255, 167, 25, 0.16);
+  border-color: rgba(255, 167, 25, 0.46);
+  transform: translateY(-1px);
 }
 
 .booking-stepper {
@@ -2511,6 +2472,14 @@ img {
 .booking-file-label small {
   color: #4d5660;
   font-weight: 700;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.more-services a:hover {
+  color: var(--navy);
+  background: rgba(255, 167, 25, 0.16);
+  border-color: rgba(255, 167, 25, 0.46);
+  transform: translateY(-1px);
 }
 
 .booking-buttons {
@@ -2544,12 +2513,16 @@ img {
 
 .demo-chat-widget {
   position: fixed;
+  top: calc(var(--header-offset) + 16px);
   right: 18px;
   bottom: 18px;
   z-index: 60;
-  display: grid;
-  justify-items: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
   gap: 12px;
+  pointer-events: none;
 }
 
 .demo-chat-toggle {
@@ -2567,6 +2540,7 @@ img {
   font-weight: 800;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  pointer-events: auto;
 }
 
 .demo-chat-toggle i {
@@ -2580,7 +2554,10 @@ img {
 }
 
 .demo-chat-panel {
-  width: min(360px, calc(100vw - 26px));
+  width: min(420px, calc(100vw - 32px));
+  max-height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
   color: var(--black);
   background: var(--white);
@@ -2592,12 +2569,14 @@ img {
   transform: translateY(14px) scale(0.98);
   transform-origin: bottom right;
   transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
+  pointer-events: none;
 }
 
 .demo-chat-widget.open .demo-chat-panel {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .demo-chat-header {
@@ -2613,26 +2592,7 @@ img {
 .demo-chat-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.demo-chat-logo {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  color: var(--navy);
-  background: var(--white);
-  border-radius: 50%;
-  font-size: 0.96rem;
-  font-weight: 800;
-  overflow: hidden;
-}
-
-.demo-chat-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  min-width: 0;
 }
 
 .demo-chat-brand strong {
@@ -2645,6 +2605,7 @@ img {
   margin-top: 2px;
   color: rgba(255, 255, 255, 0.84);
   font-size: 0.88rem;
+  line-height: 1.35;
 }
 
 .demo-chat-close {
@@ -2668,9 +2629,11 @@ img {
 
 .demo-chat-body {
   display: grid;
+  grid-template-rows: auto auto auto;
   gap: 16px;
   padding: 18px;
   background: #f7f5ee;
+  overflow-y: auto;
 }
 
 .demo-chat-thread {
@@ -2902,7 +2865,7 @@ img {
 }
 
 .about-values span::before {
-  content: "✓";
+  content: "\2713";
   width: 24px;
   height: 24px;
   display: grid;
@@ -2943,29 +2906,6 @@ img {
   font-style: italic;
   font-weight: 800;
   line-height: 1.5;
-}
-
-.founder-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 34px;
-  padding: 18px 28px;
-  border-radius: 10px;
-  background: var(--navy);
-  color: var(--white);
-  font-size: 0.92rem;
-  font-weight: 900;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
-}
-
-.founder-cta:hover {
-  background: var(--accent);
-  color: var(--black);
-  transform: translateY(-2px);
 }
 
 .about-story-media {
@@ -3057,6 +2997,7 @@ img {
   max-width: none;
   margin: 0;
   padding: 92px clamp(24px, 5vw, 96px) 108px;
+  overflow-x: clip;
   background: #f7f5ee;
 }
 
@@ -3064,12 +3005,15 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 12px;
+  width: 100%;
   max-width: 1180px;
   margin: 0 auto 12px;
 }
 
 .gallery-filter {
+  flex: 0 1 auto;
   min-height: 48px;
   padding: 0 20px;
   color: var(--black);
@@ -3078,6 +3022,9 @@ img {
   border-radius: 8px;
   font: inherit;
   font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   cursor: pointer;
   transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
@@ -3310,7 +3257,6 @@ img {
 .policy-hero > *,
 .policy-content .policy-card,
 .emergency-hero > div,
-.emergency-card,
 .emergency-form-card {
   opacity: 0;
   transition: opacity 760ms ease, transform 760ms ease;
@@ -3410,8 +3356,7 @@ img {
 }
 
 .service-detail-copy,
-.about-story-content,
-.emergency-card {
+.about-story-content {
   transform: translateX(-64px);
 }
 
@@ -3425,7 +3370,6 @@ img {
 .service-detail.in-view .service-side-card,
 .about-story.in-view .about-story-content,
 .about-story.in-view .about-story-media,
-.emergency-strip.in-view .emergency-card,
 .emergency-strip.in-view .emergency-form-card {
   opacity: 1;
   transform: translateX(0);
@@ -3491,7 +3435,6 @@ img {
   .policy-hero > *,
   .policy-content .policy-card,
   .emergency-hero > div,
-  .emergency-card,
   .emergency-form-card {
     opacity: 1;
     transform: none;
@@ -3529,6 +3472,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .ba-slider img,
@@ -3545,6 +3489,7 @@ img {
   bottom: 0;
   width: 50%;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .ba-before {
@@ -3562,6 +3507,7 @@ img {
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
+  pointer-events: none;
 }
 
 .ba-label-left {
@@ -3576,18 +3522,6 @@ img {
   background: var(--navy);
 }
 
-.ba-watermark {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  z-index: 2;
-  width: clamp(86px, 13vw, 150px);
-  max-width: 34%;
-  opacity: 0.26;
-  pointer-events: none;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.18));
-}
-
 .ba-handle {
   position: absolute;
   top: 0;
@@ -3599,23 +3533,41 @@ img {
   transform: translateX(-50%);
   box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.15);
   cursor: ew-resize;
+  touch-action: none;
+  transition: box-shadow 160ms ease, width 160ms ease;
 }
 
 .ba-knob {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 48px;
-  height: 48px;
+  width: 58px;
+  height: 58px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   color: var(--black);
   background: var(--accent);
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 900;
   transform: translate(-50%, -50%);
-  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.22);
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 36px rgba(26, 26, 26, 0.28);
   cursor: ew-resize;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.ba-handle:hover,
+.ba-slider.is-dragging .ba-handle {
+  width: 5px;
+  box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.18), 0 0 18px rgba(255, 255, 255, 0.38);
+}
+
+.ba-handle:hover .ba-knob,
+.ba-slider.is-dragging .ba-knob {
+  background: #ffb53b;
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 18px 42px rgba(26, 26, 26, 0.32);
 }
 
 .ba-content {
@@ -3781,8 +3733,11 @@ img {
   }
 
   .demo-chat-widget {
+    top: calc(var(--header-offset) + 12px);
     right: 12px;
     bottom: 12px;
+    left: auto;
+    justify-items: end;
   }
 
   .demo-chat-toggle {
@@ -3793,10 +3748,25 @@ img {
 
   .demo-chat-panel {
     width: min(340px, calc(100vw - 20px));
+    max-height: 100%;
   }
 
   .site-nav .nav-cta {
     display: none;
+  }
+
+  .site-nav .nav-free-estimate {
+    width: 100%;
+    min-height: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    padding: 0 18px;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--accent);
+    border-radius: 6px;
   }
 
   .site-nav .nav-emergency {
@@ -3902,7 +3872,7 @@ img {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    min-height: 430px;
+    min-height: 520px;
   }
 
   .service-page-hero {
@@ -3947,14 +3917,6 @@ img {
     padding: 96px 22px;
   }
 
-  .emergency-page .site-footer {
-    padding-top: 88px;
-  }
-
-  .emergency-inner {
-    grid-template-columns: 1fr;
-  }
-
   .emergency-form-grid {
     grid-template-columns: 1fr;
   }
@@ -3983,14 +3945,20 @@ img {
     flex-direction: column;
   }
 
+  .booking-request-actions .booking-submit,
+  .booking-request-actions .booking-call-now,
+  .emergency-request-actions .emergency-submit,
+  .emergency-request-actions .emergency-call-now {
+    width: 100%;
+  }
+
   .hero h1 {
     max-width: 100%;
     font-size: clamp(2.3rem, 10.8vw, 3.5rem);
     overflow-wrap: break-word;
-    min-height: 2.9em;
+    min-height: 2.55em;
   }
 
-  .hero-actions,
   .quote-cta-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -3999,16 +3967,10 @@ img {
     max-width: 340px;
   }
 
-  .hero-actions {
-    margin-top: auto;
-    padding-top: 22px;
-  }
-
   .quote-cta-actions {
     margin-inline: auto;
   }
 
-  .hero-action,
   .quote-cta-button {
     width: 100%;
     min-height: 54px;
@@ -4025,10 +3987,15 @@ img {
     line-height: 1.15;
   }
 
-  .hero-action.emergency-action,
-  .quote-cta-button:not(.secondary) {
+  .quote-cta-button.primary {
     color: var(--white);
     background: var(--navy);
+    box-shadow: 0 12px 24px rgba(29, 58, 99, 0.22);
+  }
+
+  .quote-cta-button:not(.primary):not(.secondary) {
+    color: var(--white);
+    background: var(--black);
   }
 
   .quote-cta-button.secondary {
@@ -4372,18 +4339,33 @@ img {
   }
 
   .demo-chat-widget {
-    left: 12px;
+    top: calc(var(--header-offset) + 12px);
     right: 12px;
-    justify-items: stretch;
+    bottom: 12px;
   }
 
   .demo-chat-toggle {
-    width: 100%;
+    width: 62px;
+    min-width: 62px;
+    min-height: 62px;
+    padding: 0;
     justify-content: center;
+    gap: 0;
+    border-radius: 50%;
+    box-shadow: 0 16px 36px rgba(29, 58, 99, 0.24);
+  }
+
+  .demo-chat-toggle span {
+    display: none;
+  }
+
+  .demo-chat-toggle i {
+    font-size: 1.4rem;
   }
 
   .demo-chat-panel {
-    width: 100%;
+    width: min(380px, calc(100vw - 24px));
+    max-height: 100%;
   }
 
   .demo-chat-body {
@@ -4452,7 +4434,6 @@ img {
     padding-inline: 18px;
   }
 
-  .hero-actions,
   .quote-cta-actions {
     max-width: 100%;
   }
@@ -4505,6 +4486,30 @@ img {
   }
 }
 
+@media (max-width: 680px) {
+  .gallery-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+
+  .gallery-filter {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+  }
+
+  .ba-slider {
+    height: clamp(240px, 62vw, 320px);
+  }
+
+  .ba-knob {
+    width: 64px;
+    height: 64px;
+    font-size: 1.28rem;
+  }
+}
+
 .about-copy h2,
 .trust-copy h2,
 .integrity-intro h2,
@@ -4514,7 +4519,6 @@ img {
 .faq-heading h2,
 .social-section-heading h2,
 .booking-request-heading h2,
-.emergency-card h2,
 .emergency-form-card h2,
 .service-intro h2,
 .service-detail-copy h2 {
@@ -4555,7 +4559,6 @@ img {
   letter-spacing: -0.04em;
 }
 
-.emergency-card h2,
 .emergency-form-card h2,
 .booking-box h2 {
   font-size: clamp(2rem, 3vw, 3.15rem);
