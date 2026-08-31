@@ -17,6 +17,15 @@ const galleryFilters = [...document.querySelectorAll("[data-gallery-filter]")];
 const bookingFlow = document.querySelector(".booking-flow");
 const customSelects = [...document.querySelectorAll("[data-custom-select]")];
 
+document.querySelectorAll(".site-nav").forEach((nav) => {
+  const freeEstimateButton = nav.querySelector(".nav-free-estimate");
+  const bookOnlineButton = nav.querySelector('.nav-link[href="book-online.html"]');
+  const emergencyButton = nav.querySelector(".nav-emergency");
+
+  if (freeEstimateButton && bookOnlineButton && emergencyButton) {
+    freeEstimateButton.after(bookOnlineButton, emergencyButton);
+  }
+});
 function closeAllMegaMenus() {
   megaItems.forEach((item) => item.classList.remove("mega-open"));
   megaItems.forEach((item) => item.querySelector(".mega-toggle")?.setAttribute("aria-expanded", "false"));
@@ -225,7 +234,6 @@ menuToggle.addEventListener("click", () => {
   const isOpen = header.classList.toggle("nav-open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
-
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const href = link.getAttribute("href") || "";
@@ -240,7 +248,6 @@ navLinks.forEach((link) => {
     menuToggle.setAttribute("aria-expanded", "false");
   });
 });
-
 window.addEventListener("hashchange", () => {
   setActiveLink(getCurrentNavTarget());
 });
@@ -379,7 +386,6 @@ megaItems.forEach((item) => {
     });
   });
 });
-
 document.addEventListener("click", (event) => {
   customSelects.forEach((select) => {
     if (!select.contains(event.target)) {
@@ -518,9 +524,6 @@ function initBeforeAfterSliders(root = document) {
 
     const beforeWrap = slider.querySelector(".ba-before-wrap");
     const handle = slider.querySelector(".ba-handle");
-    const knob = handle?.querySelector(".ba-knob");
-    let activePointerId = null;
-
     function syncBeforeWidth() {
       slider.style.setProperty("--ba-slider-width", `${slider.getBoundingClientRect().width}px`);
     }
@@ -528,46 +531,27 @@ function initBeforeAfterSliders(root = document) {
     function move(clientX) {
       syncBeforeWidth();
       const rect = slider.getBoundingClientRect();
-      const knobHalfWidth = (knob?.getBoundingClientRect().width || 48) / 2;
-      const minX = knobHalfWidth;
-      const maxX = Math.max(knobHalfWidth, rect.width - knobHalfWidth);
+      if (!rect.width) {
+        return;
+      }
+
       const relativeX = clientX - rect.left;
-      const clampedX = Math.min(maxX, Math.max(minX, relativeX));
+      const clampedX = Math.min(rect.width, Math.max(0, relativeX));
       const position = (clampedX / rect.width) * 100;
 
       beforeWrap.style.width = `${position}%`;
       handle.style.left = `${position}%`;
     }
 
-    function startDrag(event) {
-      if (event.pointerType === "mouse" && event.button !== 0) {
-        return;
-      }
-
-      activePointerId = event.pointerId;
-      slider.classList.add("is-dragging");
-      event.preventDefault();
-      move(event.clientX);
-      slider.setPointerCapture?.(event.pointerId);
-    }
-
-    function drag(event) {
-      if (activePointerId !== event.pointerId) {
-        return;
-      }
-
-      event.preventDefault();
+    function followMouse(event) {
       move(event.clientX);
     }
 
-    function endDrag(event) {
-      if (activePointerId !== event.pointerId) {
-        return;
+    function followTouch(event) {
+      const touch = event.touches[0];
+      if (touch) {
+        move(touch.clientX);
       }
-
-      activePointerId = null;
-      slider.classList.remove("is-dragging");
-      slider.releasePointerCapture?.(event.pointerId);
     }
 
     syncBeforeWidth();
@@ -575,14 +559,8 @@ function initBeforeAfterSliders(root = document) {
     slider.dataset.baReady = "true";
     window.addEventListener("resize", syncBeforeWidth);
     slider.addEventListener("dragstart", (event) => event.preventDefault());
-    handle?.addEventListener("pointerdown", startDrag);
-    window.addEventListener("pointermove", drag);
-    window.addEventListener("pointerup", endDrag);
-    window.addEventListener("pointercancel", endDrag);
-    slider.addEventListener("lostpointercapture", () => {
-      activePointerId = null;
-      slider.classList.remove("is-dragging");
-    });
+    slider.addEventListener("mousemove", followMouse);
+    slider.addEventListener("touchmove", followTouch, { passive: true });
   });
 }
 
@@ -618,94 +596,3 @@ document.querySelectorAll("[data-booking-file]").forEach((fileInput) => {
   });
 });
 
-function initDemoChatWidget() {
-  if (!document.body || document.querySelector("[data-demo-chat]")) {
-    return;
-  }
-
-  document.body.insertAdjacentHTML(
-    "beforeend",
-    `
-      <div class="demo-chat-widget" data-demo-chat>
-        <div class="demo-chat-panel" aria-hidden="true">
-          <div class="demo-chat-header">
-            <div class="demo-chat-brand">
-              <div>
-                <strong>TRC Demo Chat</strong>
-                <span>We'll point visitors to the right form.</span>
-              </div>
-            </div>
-            <button class="demo-chat-close" type="button" aria-label="Close message widget">&times;</button>
-          </div>
-          <div class="demo-chat-body">
-            <div class="demo-chat-thread" aria-label="Demo chat preview">
-              <div class="demo-chat-bubble demo-chat-bubble-agent">
-                Hi. This is a demo chat for The Rodriguez Co.
-              </div>
-              <div class="demo-chat-bubble demo-chat-bubble-agent">
-                Need an estimate, want to book a visit, or have an emergency?
-              </div>
-              <div class="demo-chat-bubble demo-chat-bubble-user">
-                I need help with my project.
-              </div>
-              <div class="demo-chat-bubble demo-chat-bubble-agent">
-                Use the links below and we'll route you to the right form:
-                <span class="demo-chat-inline-links">
-                  <a href="free-estimate.html">Free Estimate</a>
-                  <a href="book-online.html">Book Online</a>
-                  <a href="emergency.html">Emergency</a>
-                </span>
-              </div>
-            </div>
-            <div class="demo-chat-inputbar" aria-hidden="true">
-              <span>Type your message...</span>
-              <div class="demo-chat-inputicons">
-                <i class="bi bi-emoji-smile" aria-hidden="true"></i>
-                <i class="bi bi-paperclip" aria-hidden="true"></i>
-              </div>
-            </div>
-            <div class="demo-chat-meta">
-              <span>Demo messaging widget</span>
-              <a href="mailto:admin@therodriguezco.com">Email us</a>
-            </div>
-          </div>
-        </div>
-        <button class="demo-chat-toggle" type="button" aria-expanded="false" aria-label="Open message widget">
-          <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>
-          <span>Message Us</span>
-        </button>
-      </div>
-    `
-  );
-
-  const widget = document.querySelector("[data-demo-chat]");
-  const toggle = widget?.querySelector(".demo-chat-toggle");
-  const panel = widget?.querySelector(".demo-chat-panel");
-  const closeButton = widget?.querySelector(".demo-chat-close");
-
-  if (!widget || !toggle || !panel || !closeButton) {
-    return;
-  }
-
-  function setWidgetState(isOpen) {
-    widget.classList.toggle("open", isOpen);
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    panel.setAttribute("aria-hidden", String(!isOpen));
-  }
-
-  toggle.addEventListener("click", () => {
-    setWidgetState(!widget.classList.contains("open"));
-  });
-
-  closeButton.addEventListener("click", () => {
-    setWidgetState(false);
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!widget.contains(event.target)) {
-      setWidgetState(false);
-    }
-  });
-}
-
-initDemoChatWidget();
