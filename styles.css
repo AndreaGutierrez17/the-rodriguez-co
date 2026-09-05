@@ -2926,6 +2926,96 @@ img {
   color: var(--accent);
 }
 
+.handyman-page .service-intro,
+.handyman-page .service-detail {
+  font-family: Calibri, Arial, sans-serif;
+}
+
+.handyman-page .service-intro-inner,
+.handyman-page .service-detail-copy {
+  max-width: 1120px;
+}
+
+.handyman-page .service-intro h2,
+.handyman-page .service-detail-copy h2,
+.handyman-page .service-side-card h3 {
+  font-family: Calibri, Arial, sans-serif;
+  font-size: clamp(1.55rem, 2.1vw, 2.15rem);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.handyman-page .service-intro p,
+.handyman-page .service-detail-copy p,
+.handyman-page .service-side-card p {
+  max-width: 1120px;
+  margin-bottom: 16px;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.handyman-page .service-intro-grid,
+.handyman-page .service-list {
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.handyman-page .service-intro-grid span,
+.handyman-page .service-list span {
+  align-items: flex-start;
+  padding: 0;
+  color: var(--black);
+  background: transparent;
+  border-left: 0;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.handyman-page .service-intro-grid i,
+.handyman-page .service-list i {
+  flex: 0 0 auto;
+  margin-top: 0.3em;
+  font-size: 0.72rem;
+}
+
+.handyman-page .service-detail {
+  display: block;
+}
+
+.handyman-page .service-side-card {
+  display: block;
+  max-width: 1120px;
+  margin-top: 48px;
+  padding: 0;
+  color: var(--black);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.handyman-page .service-side-card h3 {
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+
+.handyman-page .service-side-card p {
+  color: var(--black);
+}
+
+.handyman-page .service-detail-copy p.handyman-list-note,
+.handyman-page .service-intro p.handyman-list-note {
+  margin-top: 32px;
+}
+
+.handyman-page .service-intro h2.handyman-section-heading {
+  margin-top: 48px;
+}
+
 .service-detail {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.55fr);
