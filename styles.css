@@ -2933,54 +2933,57 @@ img {
 
 .handyman-page .service-intro-inner,
 .handyman-page .service-detail-copy {
-  max-width: 1120px;
+  max-width: 1180px;
 }
 
 .handyman-page .service-intro h2,
 .handyman-page .service-detail-copy h2,
 .handyman-page .service-side-card h3 {
   font-family: Calibri, Arial, sans-serif;
-  font-size: clamp(1.55rem, 2.1vw, 2.15rem);
-  line-height: 1.25;
+  padding-left: 18px;
+  border-left: 5px solid var(--accent);
+  font-size: clamp(2rem, 2.7vw, 2.85rem);
+  line-height: 1.16;
   letter-spacing: 0;
 }
 
 .handyman-page .service-intro p,
 .handyman-page .service-detail-copy p,
 .handyman-page .service-side-card p {
-  max-width: 1120px;
-  margin-bottom: 16px;
+  max-width: 1080px;
+  margin-bottom: 22px;
   font-family: Calibri, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: clamp(1.08rem, 1.35vw, 1.28rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.62;
+  text-wrap: pretty;
 }
 
 .handyman-page .service-intro-grid,
 .handyman-page .service-list {
   grid-template-columns: 1fr;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 14px;
+  margin-top: 28px;
 }
 
 .handyman-page .service-intro-grid span,
 .handyman-page .service-list span {
   align-items: flex-start;
-  padding: 0;
+  padding: 14px 18px;
   color: var(--black);
-  background: transparent;
-  border-left: 0;
+  background: rgba(255, 179, 53, 0.08);
+  border-left: 3px solid var(--accent);
   font-family: Calibri, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: clamp(1.05rem, 1.22vw, 1.18rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .handyman-page .service-intro-grid i,
 .handyman-page .service-list i {
   flex: 0 0 auto;
-  margin-top: 0.3em;
-  font-size: 0.72rem;
+  margin-top: 0.35em;
+  font-size: 0.82rem;
 }
 
 .handyman-page .service-detail {
@@ -2989,17 +2992,18 @@ img {
 
 .handyman-page .service-side-card {
   display: block;
-  max-width: 1120px;
-  margin-top: 48px;
-  padding: 0;
+  max-width: 1180px;
+  margin-top: 64px;
+  padding: clamp(26px, 3vw, 42px);
   color: var(--black);
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
+  background: var(--white);
+  border-top: 4px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(26, 26, 26, 0.08);
 }
 
 .handyman-page .service-side-card h3 {
-  margin-bottom: 16px;
+  margin-bottom: 22px;
   color: var(--navy);
 }
 
@@ -3009,11 +3013,11 @@ img {
 
 .handyman-page .service-detail-copy p.handyman-list-note,
 .handyman-page .service-intro p.handyman-list-note {
-  margin-top: 32px;
+  margin-top: 42px;
 }
 
 .handyman-page .service-intro h2.handyman-section-heading {
-  margin-top: 48px;
+  margin-top: 64px;
 }
 
 .service-detail {
